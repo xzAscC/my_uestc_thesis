@@ -1,6 +1,6 @@
 \documentclass[bachelor]{thesis-uestc}
 
-\title{基于语法树的文档级关系预测算法设计与验证}{Design and Verification of Document Level Relation Prediction}
+\title{基于语法树的文档级关系预测算法设计与验证}{Design and Verification of Document-level Relation Extraction Algorithm Based on Syntax Tree}
 \author{朱旭东}{Xudong Zhu}
 \advisor{康昭\chinesespace 副教授}{Dr. Zhao Kang}
 \school{计算机科学与工程学院（网络空间安全学院）}{School of Computer Science and Engineering}
@@ -12,15 +12,33 @@
 \makecover
 
 \begin{chineseabstract}
-    为了适应日益增长的宽带信号和非线性系统的工程应用，用于分析瞬态电磁散射问题的时域积分方程方法研究日趋活跃。本文以时域积分方程时间步进算法及其快速算法为研究课题，重点研究了时间步进算法的数值实现技术、后时稳定性问题以及两层平面波算法加速计算等，主要研究内容分为四部分。
+    文档级关系抽取旨在识别单个文档中实体对之间的关系。
+    它需要处理多个句子并对这些句子进行推理。
+    最先进的文档级关系抽取使用图形结构来连接文档中的实体，来捕获文档中的实体对的交互。 
+    但是这些方法没有充分利用在句子级关系抽取中被充分研究的语法信息。
+    在本文中我们以将语法树融合到文档级关系抽取中为主要研究内容，重点研究了使用依赖语法树，依存语法树进行文档级关系抽取算法的实现，以及怎么调整依赖语法树和依存语法树的在文档级关系抽取中的权重问题。
+    我们利用依存语法树来聚合整个句子信息，并为目标实体对选择有指导意义的句子。
+    同时我们利用依赖语法树对整个文档进行细粒度的分析，并选择其中重要的单词增强目标实体对的信息。
+    文档级关系抽取将同时利用依赖语法树和依存语法树进行预测。
+    通过在不同领域的数据集上的实验结果证明了该方法的有效性。 
 
-    \chinesekeyword{时域电磁散射，时域积分方程，时间步进算法，后时不稳定性，时域平面波算法}
+
+\chinesekeyword{文档级关系抽取，依赖语法树，依存语法树，语法树融合}
 \end{chineseabstract}
 
 \begin{englishabstract}
-    With the widespread engineering applications ranging from broadband signals and non-linear systems, time-domain integral equations (TDIE) methods for analyzing transient electromagnetic scattering problems are becoming widely used nowadays. TDIE-based marching-on-in-time (MOT) scheme and its fast algorithm are researched in this dissertation, including the numerical techniques of MOT scheme, late-time stability of MOT scheme, and two-level PWTD-enhanced MOT scheme. The contents are divided into four parts shown as follows.
+    Document-level Relation Extraction (DocRE) aims to identify relation labels between entity pairs within a single document. 
+    It requires handling several sentences and reasoning over them.
+    State-of-the-art DocRE methods use a graph structure to connect entities across the document to capture interaction between entity pairs in the document.
+    However, this is insufficient to fully exploit the rich syntax information in the document, which is widely used in sentence-level Relation Extraction(RE). 
+    In this paper, we focus on integrating syntax trees into DocRE as the main research topic, and investigate the effective and effient implementation of DocRE algorithms using dependency syntax tree and constituency syntax tree, as well as how to adjust the weight of dependency syntax tree and constituency syntax tree in the extraction. 
+    It uses constituency syntax to aggregate the whole sentence information and select the instructive sentences for the pairs of targets. 
+    Meanwhile, it exploits the dependency syntax in a graph structure with constituency syntax enhancement and selects the most important words between entity pairs based on the dependency graph to enhance the information of target entity pairs. 
+    Finally, DocRE will integrate the dependency syntax and constituency syntax to predict.
+    The experimental results on datasets from various domains demonstrate the effectiveness of the proposed method.
 
-    \englishkeyword{Time-domain Electromagnetic Scattering, Time-domain Integral Equation, Marching-on In-time (MOT) Scheme, Late-time Instability, Plane Wave Time-domain (PWTD) Algorithm}
+
+    \englishkeyword{Document-level Relation Extraction, Constituency Syntax, Dependency Syntax, Syntax Tree Fusion}
 \end{englishabstract}
 
 \thesistableofcontents
