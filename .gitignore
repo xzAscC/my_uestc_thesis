@@ -12,6 +12,7 @@
 *.synctex.gz
 *.lot
 !./example.pdf
+*.zip
 
 .DS_Store
 *.ttf
