@@ -1,78 +1,588 @@
+% Please download the latest anthology.bib from
+%
+% http://aclweb.org/anthology/anthology.bib.gz
+% Please download the latest anthology.bib from
+%
+% http://aclweb.org/anthology/anthology.bib.gz
+% 1
 
-@article{wang1999sanwei,
-  title = {三维矢量散射积分方程中奇异性分析},
-  author = {王浩刚 and 聂在平},
-  journal = {电子学报},
-  volume = {27},
-  number = {12},
-  pages = {68 -- 71},
-  year = {1999}
+% 2
+@inproceedings{sentenceRE-Lyu,
+    title = "Relation Classification with Entity Type Restriction",
+    author = "Lyu, Shengfei  and
+      Chen, Huanhuan",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/2021.findings-acl.34",
+    pages = "390--395",
+}
+% 3
+@inproceedings{sentenceRE-Dixit,
+    title = "Span-Level Model for Relation Extraction",
+    author = "Dixit, Kalpit  and
+      Al-Onaizan, Yaser",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/P19-1525",
+    pages = "5308--5314",
+    abstract = "Relation Extraction is the task of identifying entity mention spans in raw text and then identifying relations between pairs of the entity mentions. Recent approaches for this span-level task have been token-level models which have inherent limitations. They cannot easily define and implement span-level features, cannot model overlapping entity mentions and have cascading errors due to the use of sequential decoding. To address these concerns, we present a model which directly models all possible spans and performs joint entity mention detection and relation extraction. We report a new state-of-the-art performance of 62.83 F1 (prev best was 60.49) on the ACE2005 dataset.",
+}
+% 4
+@inproceedings{zhou2021document,
+  title={Document-level relation extraction with adaptive thresholding and localized context pooling},
+  author={Zhou, Wenxuan and Huang, Kevin and Ma, Tengyu and Huang, Jing},
+  booktitle={Proceedings of the AAAI conference on artificial intelligence},
+  volume={35},
+  number={16},
+  pages={14612--14620},
+  year={2021},
+url={https://ojs.aaai.org/index.php/AAAI/article/view/17717/17524}
+}
+% 5
+@article{Zhao2022DocumentlevelRE,
+  title={Document-level Relation Extraction with Context Guided Mention Integration and Inter-pair Reasoning},
+  author={Chao Zhao and Daojian Zeng and Lu Xu and Jianhua Dai},
+  journal={ArXiv},
+  year={2022},
+  volume={abs/2201.04826},
+url={https://arxiv.org/abs/2201.04826}
+}
+% 6
+@inproceedings{BERT,
+  title={Bert: Pre-training of deep bidirectional transformers for language understanding},
+  author={Kenton, Jacob Devlin Ming-Wei Chang and Toutanova, Lee Kristina},
+  booktitle={Proceedings of naacL-HLT},
+  volume={1},
+  pages={2},
+  year={2019},
+url={https://aclanthology.org/N19-1423.pdf}
+}
+% 7
+
+% 8
+@inproceedings{GAIN,
+    title = "Double Graph Based Reasoning for Document-level Relation Extraction",
+    author = "Zeng, Shuang  and
+      Xu, Runxin  and
+      Chang, Baobao  and
+      Li, Lei",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/2020.emnlp-main.127",
+    pages = "1630--1640",
+    abstract = "Document-level relation extraction aims to extract relations among entities within a document. Different from sentence-level relation extraction, it requires reasoning over multiple sentences across paragraphs. In this paper, we propose Graph Aggregation-and-Inference Network (GAIN), a method to recognize such relations for long paragraphs. GAIN constructs two graphs, a heterogeneous mention-level graph (MG) and an entity-level graph (EG). The former captures complex interaction among different mentions and the latter aggregates mentions underlying for the same entities. Based on the graphs we propose a novel path reasoning mechanism to infer relations between entities. Experiments on the public dataset, DocRED, show GAIN achieves a significant performance improvement (2.85 on F1) over the previous state-of-the-art. Our code is available at https://github.com/PKUnlp-icler/GAIN.",
+}
+% 9
+@inproceedings{SagDRE,
+author = {Wei, Ying and Li, Qi},
+title = {SagDRE: Sequence-Aware Graph-Based Document-Level Relation Extraction with Adaptive Margin Loss},
+year = {2022},
+isbn = {9781450393850},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+doi = {10.1145/3534678.3539304},
+abstract = {Relation extraction (RE) is an important task for many natural language processing applications. Document-level relation extraction task aims to extract the relations within a document and poses many challenges to the RE tasks as it requires reasoning across sentences and handling multiple relations expressed in the same document. Existing state-of-the-art document-level RE models use the graph structure to better connect long-distance correlations. In this work, we propose SagDRE model, which further considers and captures the original sequential information from the text. The proposed model learns sentence-level directional edges to capture the information flow in the document and uses the token-level sequential information to encode the shortest paths from one entity to the other. In addition, we propose an adaptive margin loss to address the long-tailed multi-label problem of document-level RE tasks, where multiple relations can be expressed in a document for an entity pair and there are a few popular relations. The loss function aims to encourage separations between positive and negative classes. The experimental results on datasets from various domains demonstrate the effectiveness of the proposed methods.},
+booktitle = {Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining},
+pages = {2000–2008},
+numpages = {9},
+keywords = {graph, document-level re, sequence information, relation extraction},
+location = {Washington DC, USA},
+series = {KDD '22}
+}
+% 10
+@inproceedings{
+GCN,
+title={Semi-Supervised Classification with Graph Convolutional Networks},
+author={Thomas N. Kipf and Max Welling},
+booktitle={International Conference on Learning Representations},
+year={2017},
+url={https://openreview.net/forum?id=SJU4ayYgl}
+}
+% 11
+@inproceedings{qin-etal-2021-relation,
+    title = "Relation Extraction with Word Graphs from N-grams",
+    author = "Qin, Han  and
+      Tian, Yuanhe  and
+      Song, Yan",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/2021.emnlp-main.228",
+    pages = "2860--2868",
+    abstract = "Most recent studies for relation extraction (RE) leverage the dependency tree of the input sentence to incorporate syntax-driven contextual information to improve model performance, with little attention paid to the limitation where high-quality dependency parsers in most cases unavailable, especially for in-domain scenarios. To address this limitation, in this paper, we propose attentive graph convolutional networks (A-GCN) to improve neural RE methods with an unsupervised manner to build the context graph, without relying on the existence of a dependency parser. Specifically, we construct the graph from n-grams extracted from a lexicon built from pointwise mutual information (PMI) and apply attention over the graph. Therefore, different word pairs from the contexts within and across n-grams are weighted in the model and facilitate RE accordingly. Experimental results with further analyses on two English benchmark datasets for RE demonstrate the effectiveness of our approach, where state-of-the-art performance is observed on both datasets.",
+}
+% 12
+@inproceedings{xu-etal-2016-improved,
+    title = "Improved relation classification by deep recurrent neural networks with data augmentation",
+    author = "Xu, Yan  and
+      Jia, Ran  and
+      Mou, Lili  and
+      Li, Ge  and
+      Chen, Yunchuan  and
+      Lu, Yangyang  and
+      Jin, Zhi",
+    booktitle = "Proceedings of {COLING} 2016, the 26th International Conference on Computational Linguistics: Technical Papers",
+    month = dec,
+    year = "2016",
+    address = "Osaka, Japan",
+    publisher = "The COLING 2016 Organizing Committee",
+    pages = "1461--1470",
+    abstract = "Nowadays, neural networks play an important role in the task of relation classification. By designing different neural architectures, researchers have improved the performance to a large extent in comparison with traditional methods. However, existing neural networks for relation classification are usually of shallow architectures (e.g., one-layer convolutional neural networks or recurrent networks). They may fail to explore the potential representation space in different abstraction levels. In this paper, we propose deep recurrent neural networks (DRNNs) for relation classification to tackle this challenge. Further, we propose a data augmentation method by leveraging the directionality of relations. We evaluated our DRNNs on the SemEval-2010 Task 8, and achieve an F1-score of 86.1{\%}, outperforming previous state-of-the-art recorded results.",
+url={https://arxiv.org/abs/1601.03651}
+}
+% 13
+@inproceedings{DOCRED,
+    title = "{D}oc{RED}: A Large-Scale Document-Level Relation Extraction Dataset",
+    author = "Yao, Yuan  and
+      Ye, Deming  and
+      Li, Peng  and
+      Han, Xu  and
+      Lin, Yankai  and
+      Liu, Zhenghao  and
+      Liu, Zhiyuan  and
+      Huang, Lixin  and
+      Zhou, Jie  and
+      Sun, Maosong",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/P19-1074",
+    pages = "764--777",
+    abstract = "Multiple entities in a document generally exhibit complex inter-sentence relations, and cannot be well handled by existing relation extraction (RE) methods that typically focus on extracting intra-sentence relations for single entity pairs. In order to accelerate the research on document-level RE, we introduce DocRED, a new dataset constructed from Wikipedia and Wikidata with three features: (1) DocRED annotates both named entities and relations, and is the largest human-annotated dataset for document-level RE from plain text; (2) DocRED requires reading multiple sentences in a document to extract entities and infer their relations by synthesizing all information of the document; (3) along with the human-annotated data, we also offer large-scale distantly supervised data, which enables DocRED to be adopted for both supervised and weakly supervised scenarios. In order to verify the challenges of document-level RE, we implement recent state-of-the-art methods for RE and conduct a thorough evaluation of these methods on DocRED. Empirical results show that DocRED is challenging for existing RE methods, which indicates that document-level RE remains an open problem and requires further efforts. Based on the detailed analysis on the experiments, we discuss multiple promising directions for future research. We make DocRED and the code for our baselines publicly available at https://github.com/thunlp/DocRED.",
+}
+% 14
+@article{li2016biocreative,
+  title={BioCreative V CDR task corpus: a resource for chemical disease relation extraction},
+  author={Li, Jiao and Sun, Yueping and Johnson, Robin J and Sciaky, Daniela and Wei, Chih-Hsuan and Leaman, Robert and Davis, Allan Peter and Mattingly, Carolyn J and Wiegers, Thomas C and Lu, Zhiyong},
+  journal={Database},
+  volume={2016},
+  year={2016},
+  publisher={Oxford Academic},
+url={https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4860626/}
+}
+% 15
+@inproceedings{GDA,
+  title={Renet: A deep learning approach for extracting gene-disease associations from literature},
+  author={Wu, Ye and Luo, Ruibang and Leung, Henry CM and Ting, Hing-Fung and Lam, Tak-Wah},
+  booktitle={Research in Computational Molecular Biology: 23rd Annual International Conference, RECOMB 2019, Washington, DC, USA, May 5-8, 2019, Proceedings 23},
+  pages={272--284},
+  year={2019},
+  organization={Springer},
+url={https://link.springer.com/chapter/10.1007/978-3-030-17083-7_17}
+}
+% 16
+@article{pawar2017relation,
+  title={Relation extraction: A survey},
+  author={Pawar, Sachin and Palshikar, Girish K and Bhattacharyya, Pushpak},
+  journal={arXiv preprint arXiv:1712.05191},
+  year={2017}
+}
+% 17
+@inproceedings{sahu2019inter,
+    title = "Inter-sentence Relation Extraction with Document-level Graph Convolutional Neural Network",
+    author = "Sahu, Sunil Kumar  and
+      Christopoulou, Fenia  and
+      Miwa, Makoto  and
+      Ananiadou, Sophia",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/P19-1423",
+    pages = "4309--4316",
+    abstract = "Inter-sentence relation extraction deals with a number of complex semantic relationships in documents, which require local, non-local, syntactic and semantic dependencies. Existing methods do not fully exploit such dependencies. We present a novel inter-sentence relation extraction model that builds a labelled edge graph convolutional neural network model on a document-level graph. The graph is constructed using various inter- and intra-sentence dependencies to capture local and non-local dependency information. In order to predict the relation of an entity pair, we utilise multi-instance learning with bi-affine pairwise scoring. Experimental results show that our model achieves comparable performance to the state-of-the-art neural models on two biochemistry datasets. Our analysis shows that all the types in the graph are effective for inter-sentence relation extraction.",
+}
+% 18
+@inproceedings{ye-etal-2020-coreferential,
+    title = "{C}oreferential {R}easoning {L}earning for {L}anguage {R}epresentation",
+    author = "Ye, Deming  and
+      Lin, Yankai  and
+      Du, Jiaju  and
+      Liu, Zhenghao  and
+      Li, Peng  and
+      Sun, Maosong  and
+      Liu, Zhiyuan",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/2020.emnlp-main.582",
+    pages = "7170--7186",
+    abstract = "Language representation models such as BERT could effectively capture contextual semantic information from plain text, and have been proved to achieve promising results in lots of downstream NLP tasks with appropriate fine-tuning. However, most existing language representation models cannot explicitly handle coreference, which is essential to the coherent understanding of the whole discourse. To address this issue, we present CorefBERT, a novel language representation model that can capture the coreferential relations in context. The experimental results show that, compared with existing baseline models, CorefBERT can achieve significant improvements consistently on various downstream NLP tasks that require coreferential reasoning, while maintaining comparable performance to previous models on other common NLP tasks. The source code and experiment details of this paper can be obtained from https://github.com/thunlp/CorefBERT.",
+}
+% 19
+@article{Tang2020HINHI,
+  title={HIN: Hierarchical Inference Network for Document-Level Relation Extraction},
+  author={Hengzhu Tang and Yanan Cao and Zhenyu Zhang and Jiangxia Cao and Fang Fang and Shi Wang and Pengfei Yin},
+  journal={Advances in Knowledge Discovery and Data Mining},
+  year={2020},
+  volume={12084},
+  pages={197 - 209},
+url={https://arxiv.org/abs/2003.12754}
+}
+% 20
+@inproceedings{Xu2020DocumentLevelRE,
+  title={Document-level relation extraction with reconstruction},
+  author={Xu, Wang and Chen, Kehai and Zhao, Tiejun},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={35},
+  number={16},
+  pages={14167--14175},
+  year={2021},
+url={https://ojs.aaai.org/index.php/AAAI/article/view/17667/17474}
+}
+% 21
+@inproceedings{Dong2022SyntacticML,
+  title={Syntactic Multi-view Learning for Open Information Extraction},
+  author={Kuicai Dong and Aixin Sun and Jung-jae Kim and Xiaoli Li},
+  booktitle={Conference on Empirical Methods in Natural Language Processing},
+url= {https://aclanthology.org/2022.emnlp-main.272/},
+  year={2022}
+}
+% 22
+@inproceedings{zhang-etal-2017-position,
+    title = "Position-aware Attention and Supervised Data Improve Slot Filling",
+    author = "Zhang, Yuhao  and
+      Zhong, Victor  and
+      Chen, Danqi  and
+      Angeli, Gabor  and
+      Manning, Christopher D.",
+    booktitle = "Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing",
+    month = sep,
+    year = "2017",
+    address = "Copenhagen, Denmark",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/D17-1004",
+    pages = "35--45",
+    abstract = "Organized relational knowledge in the form of {``}knowledge graphs{''} is important for many applications. However, the ability to populate knowledge bases with facts automatically extracted from documents has improved frustratingly slowly. This paper simultaneously addresses two issues that have held back prior work. We first propose an effective new model, which combines an LSTM sequence model with a form of entity position-aware attention that is better suited to relation extraction. Then we build TACRED, a large (119,474 examples) supervised relation extraction dataset obtained via crowdsourcing and targeted towards TAC KBP relations. The combination of better supervised data and a more appropriate high-capacity model enables much better relation extraction performance. When the model trained on this new dataset replaces the previous relation extraction component of the best TAC KBP 2015 slot filling system, its F1 score increases markedly from 22.2{\%} to 26.7{\%}.",
+}
+% 23
+@inproceedings{jia-etal-2019-document,
+    title = "Document-Level N-ary Relation Extraction with Multiscale Representation Learning",
+    author = "Jia, Robin  and
+      Wong, Cliff  and
+      Poon, Hoifung",
+    booktitle = "Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+    month = jun,
+    year = "2019",
+    address = "Minneapolis, Minnesota",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/N19-1370",
+    pages = "3693--3704",
+    abstract = "Most information extraction methods focus on binary relations expressed within single sentences. In high-value domains, however, n-ary relations are of great demand (e.g., drug-gene-mutation interactions in precision oncology). Such relations often involve entity mentions that are far apart in the document, yet existing work on cross-sentence relation extraction is generally confined to small text spans (e.g., three consecutive sentences), which severely limits recall. In this paper, we propose a novel multiscale neural architecture for document-level n-ary relation extraction. Our system combines representations learned over various text spans throughout the document and across the subrelation hierarchy. Widening the system{'}s purview to the entire document maximizes potential recall. Moreover, by integrating weak signals across the document, multiscale modeling increases precision, even in the presence of noisy labels from distant supervision. Experiments on biomedical machine reading show that our approach substantially outperforms previous n-ary relation extraction methods.",
+}
+% 24
+@inproceedings{mou-etal-2016-natural,
+    title = "Natural Language Inference by Tree-Based Convolution and Heuristic Matching",
+    author = "Mou, Lili  and
+      Men, Rui  and
+      Li, Ge  and
+      Xu, Yan  and
+      Zhang, Lu  and
+      Yan, Rui  and
+      Jin, Zhi",
+    booktitle = "Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = aug,
+    year = "2016",
+    address = "Berlin, Germany",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/P16-2022",
+    pages = "130--136",
+}
+% 25
+@inproceedings{miwa-bansal-2016-end,
+    title = "End-to-End Relation Extraction using {LSTM}s on Sequences and Tree Structures",
+    author = "Miwa, Makoto  and
+      Bansal, Mohit",
+    booktitle = "Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2016",
+    address = "Berlin, Germany",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/P16-1105",
+    pages = "1105--1116",
+}
+% 26
+@inproceedings{Gentile1998LinearHL,
+ author = {Gentile, Claudio and Warmuth, Manfred K. K},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {M. Kearns and S. Solla and D. Cohn},
+ pages = {},
+ publisher = {MIT Press},
+ title = {Linear Hinge Loss and Average Margin},
+url={http://papers.neurips.cc/paper/1610-linear-hinge-loss-and-average-margin.pdf},
+ volume = {11},
+ year = {1998}
+}
+% 27
+
+% 28
+@inproceedings{xie2022eider,
+  title={Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion},
+  author={Xie, Yiqing and Shen, Jiaming and Li, Sha and Mao, Yuning and Han, Jiawei},
+  booktitle={Findings of the Association for Computational Linguistics: ACL 2022},
+  pages={257--268},
+  year={2022},
+url={https://aclanthology.org/2022.findings-acl.23/}
+}
+% 29
+@inproceedings{nan-etal-2020-reasoning,
+    title = "Reasoning with Latent Structure Refinement for Document-Level Relation Extraction",
+    author = "Nan, Guoshun  and
+      Guo, Zhijiang  and
+      Sekulic, Ivan  and
+      Lu, Wei",
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/2020.acl-main.141",
+    pages = "1546--1557",
+    abstract = "Document-level relation extraction requires integrating information within and across multiple sentences of a document and capturing complex interactions between inter-sentence entities. However, effective aggregation of relevant information in the document remains a challenging research question. Existing approaches construct static document-level graphs based on syntactic trees, co-references or heuristics from the unstructured text to model the dependencies. Unlike previous methods that may not be able to capture rich non-local interactions for inference, we propose a novel model that empowers the relational reasoning across sentences by automatically inducing the latent document-level graph. We further develop a refinement strategy, which enables the model to incrementally aggregate relevant information for multi-hop reasoning. Specifically, our model achieves an F1 score of 59.05 on a large-scale document-level dataset (DocRED), significantly improving over the previous results, and also yields new state-of-the-art results on the CDR and GDA dataset. Furthermore, extensive analyses show that the model is able to discover more accurate inter-sentence relations.",
+}
+% 30
+@inproceedings{zhou-zhao-2019-head,
+    title = "{H}ead-{D}riven {P}hrase {S}tructure {G}rammar Parsing on {P}enn {T}reebank",
+    author = "Zhou, Junru  and
+      Zhao, Hai",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/P19-1230",
+    pages = "2396--2408",
+    abstract = "Head-driven phrase structure grammar (HPSG) enjoys a uniform formalism representing rich contextual syntactic and even semantic meanings. This paper makes the first attempt to formulate a simplified HPSG by integrating constituent and dependency formal representations into head-driven phrase structure. Then two parsing algorithms are respectively proposed for two converted tree representations, division span and joint span. As HPSG encodes both constituent and dependency structure information, the proposed HPSG parsers may be regarded as a sort of joint decoder for both types of structures and thus are evaluated in terms of extracted or converted constituent and dependency parsing trees. Our parser achieves new state-of-the-art performance for both parsing tasks on Penn Treebank (PTB) and Chinese Penn Treebank, verifying the effectiveness of joint learning constituent and dependency structures. In details, we report 95.84 F1 of constituent parsing and 97.00{\%} UAS of dependency parsing on PTB.",
+}
+% 31
+@inproceedings{strzyz-etal-2019-sequence,
+    title = "Sequence Labeling Parsing by Learning across Representations",
+    author = "Strzyz, Michalina  and
+      Vilares, David  and
+      G{\'o}mez-Rodr{\'\i}guez, Carlos",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/P19-1531",
+    pages = "5350--5357",
+    abstract = "We use parsing as sequence labeling as a common framework to learn across constituency and dependency syntactic abstractions.To do so, we cast the problem as multitask learning (MTL). First, we show that adding a parsing paradigm as an auxiliary loss consistently improves the performance on the other paradigm. Secondly, we explore an MTL sequence labeling model that parses both representations, at almost no cost in terms of performance and speed. The results across the board show that on average MTL models with auxiliary losses for constituency parsing outperform single-task ones by 1.05 F1 points, and for dependency parsing by 0.62 UAS points.",
+}
+% 32
+@inproceedings{fei-etal-2021-better,
+    title = "Better Combine Them Together! Integrating Syntactic Constituency and Dependency Representations for Semantic Role Labeling",
+    author = "Fei, Hao  and
+      Wu, Shengqiong  and
+      Ren, Yafeng  and
+      Li, Fei  and
+      Ji, Donghong",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/2021.findings-acl.49",
+    pages = "549--559",
+}
+% 33
+@inproceedings{ma-etal-2023-dreeam,
+    title = "DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction",
+    author = "Ma, Youmi  and
+      Wang, An  and
+      Okazaki, Naoaki",
+    booktitle = "Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume",
+    series = {EACL},
+    month = may,
+    year = "2023",
+    address = "Dubrovnik, Croatia",
+    publisher = "Association for Computational Linguistics",
+    pages = "(to appear)",
+url={https://aclanthology.org/2023.eacl-main.145.pdf}
 }
 
-@conference{liuxf2006,
-  author = {Liu, X F and Wang, Bing Zhong and Shao, Wei and Wen Wang},
-  title = {A marching-on-in-order scheme for exact attenuation constant extraction of lossy transmission lines},
-  year = {2006},
-  pages = {527-529},
-  address = {Chengdu},
-  booktitle = {China-Japan Joint Microwave Conference Proceedings}
+% 35
+@inproceedings{bai-etal-2021-syntax,
+    title = "Syntax-{BERT}: Improving Pre-trained Transformers with Syntax Trees",
+    author = "Bai, Jiangang  and
+      Wang, Yujing  and
+      Chen, Yiren  and
+      Yang, Yaming  and
+      Bai, Jing  and
+      Yu, Jing  and
+      Tong, Yunhai",
+    booktitle = "Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics: Main Volume",
+    month = apr,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/2021.eacl-main.262",
+    pages = "3011--3020",
+    abstract = "Pre-trained language models like BERT achieve superior performances in various NLP tasks without explicit consideration of syntactic information. Meanwhile, syntactic information has been proved to be crucial for the success of NLP applications. However, how to incorporate the syntax trees effectively and efficiently into pre-trained Transformers is still unsettled. In this paper, we address this problem by proposing a novel framework named Syntax-BERT. This framework works in a plug-and-play mode and is applicable to an arbitrary pre-trained checkpoint based on Transformer architecture. Experiments on various datasets of natural language understanding verify the effectiveness of syntax trees and achieve consistent improvement over multiple pre-trained models, including BERT, RoBERTa, and T5.",
+}
+% 36
+@article{sundararaman2019syntax,
+  title={Syntax-infused transformer and bert models for machine translation and natural language understanding},
+  author={Sundararaman, Dhanasekar and Subramanian, Vivek and Wang, Guoyin and Si, Shijing and Shen, Dinghan and Wang, Dong and Carin, Lawrence},
+  journal={arXiv preprint arXiv:1911.06156},
+  year={2019},
+url={https://arxiv.org/abs/1911.06156}
+}
+% 37
+@inproceedings{gupta2019neural,
+  title={Neural relation extraction within and across sentence boundaries},
+  author={Gupta, Pankaj and Rajaram, Subburam and Sch{\"u}tze, Hinrich and Runkler, Thomas},
+  booktitle={Proceedings of the AAAI conference on artificial intelligence},
+  volume={33},
+  number={01},
+  pages={6513--6520},
+  year={2019}
+}
+% 38
+@inproceedings{duan-etal-2022-just,
+    title = "Not Just Plain Text! Fuel Document-Level Relation Extraction with Explicit Syntax Refinement and Subsentence Modeling",
+    author = "Duan, Zhichao  and
+      Li, Xiuxing  and
+      Li, Zhenyu  and
+      Wang, Zhuo  and
+      Wang, Jianyong",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2022",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates",
+    publisher = "Association for Computational Linguistics",
+    pages = "1941--1951",
+    abstract = "Document-level relation extraction (DocRE) aims to identify semantic labels among entities within a single document. One major challenge of DocRE is to dig decisive details regarding a specific entity pair from long text. However, in many cases, only a fraction of text carries required information, even in the manually labeled supporting evidence. To better capture and exploit instructive information, we propose a novel expLicit syntAx Refinement and Subsentence mOdeliNg based framework (LARSON). By introducing extra syntactic information, LARSON can model subsentences of arbitrary granularity and efficiently screen instructive ones. Moreover, we incorporate refined syntax into text representations which further improves the performance of LARSON. Experimental results on three benchmark datasets (DocRED, CDR, and GDA) demonstrate that LARSON significantly outperforms existing methods.",
+url={https://aclanthology.org/2022.findings-emnlp.140/}
+}
+% 39
+@inproceedings{bunescu-mooney-2005-shortest,
+    title = "A Shortest Path Dependency Kernel for Relation Extraction",
+    author = "Bunescu, Razvan  and
+      Mooney, Raymond",
+    booktitle = "Proceedings of Human Language Technology Conference and Conference on Empirical Methods in Natural Language Processing",
+    month = oct,
+    year = "2005",
+    address = "Vancouver, British Columbia, Canada",
+    publisher = "Association for Computational Linguistics",
+    pages = "724--731",
+}
+%40
+@article{paszke2019pytorch,
+  title={Pytorch: An imperative style, high-performance deep learning library},
+  author={Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and others},
+  journal={Advances in neural information processing systems},
+  volume={32},
+  year={2019},
+url={https://arxiv.org/abs/1912.01703}
 }
 
-@book{zhu1973wulixue,
-  title = {物理学},
-  author = {竺可桢},
-  year = {1973},
-  address = {北京},
-  pages = {56-60},
-  publisher = {科学出版社}
+@inproceedings{
+loshchilov2018decoupled,
+title={Decoupled Weight Decay Regularization},
+author={Ilya Loshchilov and Frank Hutter},
+booktitle={International Conference on Learning Representations},
+year={2019},
+url={https://openreview.net/forum?id=Bkg6RiCqY7}
 }
 
-@thesis{chen2001hao,
-  author = {陈念永},
-  title = {毫米波细胞生物效应及抗肿瘤研究},
-  institution = {电子科技大学},
-  year = {2001},
-  pages = {50-60},
-  address = {成都}
+@article{DBLP:journals/corr/GoyalDGNWKTJH17,
+  author       = {Priya Goyal and
+                  Piotr Doll{\'{a}}r and
+                  Ross B. Girshick and
+                  Pieter Noordhuis and
+                  Lukasz Wesolowski and
+                  Aapo Kyrola and
+                  Andrew Tulloch and
+                  Yangqing Jia and
+                  Kaiming He},
+  title        = {Accurate, Large Minibatch {SGD:} Training ImageNet in 1 Hour},
+  journal      = {CoRR},
+  volume       = {abs/1706.02677},
+  year         = {2017},
+  eprinttype    = {arXiv},
+  eprint       = {1706.02677},
+  timestamp    = {Mon, 13 Aug 2018 16:49:10 +0200},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
 
-@newspaper{gu2012lao,
-  author = {顾春},
-  title = {牢牢把握稳中求进的总基调},
-  journal = {人民日报},
-  date = {2012年3月31日}
+@inproceedings{kendall2018multi,
+  title={Multi-task learning using uncertainty to weigh losses for scene geometry and semantics},
+  author={Kendall, Alex and Gal, Yarin and Cipolla, Roberto},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={7482--7491},
+  year={2018},
+    url={https://arxiv.org/abs/1705.07115}
 }
 
-@techreport{feng997he,
-  author = {冯西桥},
-  title = {核反应堆压力容器的{LBB}分析},
-  institution = {清华大学核能技术设计研究院},
-  date = {1997年6月25日},
-  address = {北京}
+@inproceedings{qi2020stanza,
+    title={Stanza: A {Python} Natural Language Processing Toolkit for Many Human Languages},
+    author={Qi, Peng and Zhang, Yuhao and Zhang, Yuhui and Bolton, Jason and Manning, Christopher D.},
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics: System Demonstrations",
+    year={2020},
+url={https://aclanthology.org/2020.acl-demos.14/}
 }
 
-@patent{xiao2012yi,
-  author = {肖珍新},
-  title = {一种新型排渣阀调节降温装置},
-  date = {2012年4月25日},
-  type = {实用新型专利},
-  country = {中国},
-  id = {ZL201120085830.0}
+@inproceedings{xu-etal-2021-discriminative,
+    title = "Discriminative Reasoning for Document-level Relation Extraction",
+    author = "Xu, Wang  and
+      Chen, Kehai  and
+      Zhao, Tiejun",
+    editor = "Zong, Chengqing  and
+      Xia, Fei  and
+      Li, Wenjie  and
+      Navigli, Roberto",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    doi = "10.18653/v1/2021.findings-acl.144",
+    pages = "1653--1663",
 }
 
-@standard{zhong1994zhong,
-  institution = {中华人民共和国国家技术监督局},
-  id = {GB3100-3102},
-  title = {中华人民共和国国家标准--量与单位},
-  publisher = {中国标准出版社},
-  date = {1994年11月1日},
-  address = {北京}
+@article{xue2022corefdre,
+  title={CorefDRE: Document-level Relation Extraction with coreference resolution},
+  author={Xue, Zhongxuan and Li, Rongzhen and Dai, Qizhu and Jiang, Zhong},
+  journal={arXiv preprint arXiv:2202.10744},
+  year={2022},
+url={https://arxiv.org/abs/2202.10744}
 }
 
-@digital{clerc2010discrete,
-  author = {M. Clerc},
-  title = {Discrete particle swarm optimization: a fuzzy combinatorial box},
-  type = {EB/OL},
-  date = {July 16, 2010},
-  url = {http://clere.maurice.free.fr/pso/Fuzzy_Discrere_PSO/Fuzzy_DPSO.htm}
+@inproceedings{liu2023document,
+  title={Document-Level Relation Extraction with Cross-sentence Reasoning Graph},
+  author={Liu, Hongfei and Kang, Zhao and Zhang, Lizong and Tian, Ling and Hua, Fujun},
+  booktitle={Pacific-Asia Conference on Knowledge Discovery and Data Mining},
+  pages={316--328},
+  year={2023},
+  organization={Springer},
+url={https://arxiv.org/pdf/2303.03912.pdf}
+}
+
+@article{DAI2022107659,
+title = {Graph Fusion Network for Text Classification},
+journal = {Knowledge-Based Systems},
+volume = {236},
+pages = {107659},
+year = {2022},
+issn = {0950-7051},
+doi = {https://doi.org/10.1016/j.knosys.2021.107659},
+author = {Yong Dai and Linjun Shou and Ming Gong and Xiaolin Xia and Zhao Kang and Zenglin Xu and Daxin Jiang},
+keywords = {Graph Neural Networks, Text classification, External knowledge, Graph fusion},
 }
