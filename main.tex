@@ -7,6 +7,8 @@
 \major{计算机科学与技术}{Computer Science and Technology}
 \studentnumber{2020080902004}
 
+\usepackage{graphicx}
+
 \begin{document}
 
 \makecover
@@ -31,7 +33,7 @@
     It requires handling several sentences and reasoning over them.
     State-of-the-art DocRE methods use a graph structure to connect entities across the document to capture interaction between entity pairs in the document.
     However, this is insufficient to fully exploit the rich syntax information in the document, which is widely used in sentence-level Relation Extraction(RE). 
-    In this paper, we focus on integrating syntax trees into DocRE as the main research topic, and investigate the effective and effient implementation of DocRE algorithms using dependency syntax tree and constituency syntax tree, as well as how to adjust the weight of dependency syntax tree and constituency syntax tree in the extraction. 
+    In this thesis, we focus on integrating syntax trees into DocRE as the main research topic, and investigate the effective and effient implementation of DocRE algorithms using dependency syntax tree and constituency syntax tree, as well as how to adjust the weight of dependency syntax tree and constituency syntax tree in the extraction. 
     It uses constituency syntax to aggregate the whole sentence information and select the instructive sentences for the pairs of targets. 
     Meanwhile, it exploits the dependency syntax in a graph structure with constituency syntax enhancement and selects the most important words between entity pairs based on the dependency graph to enhance the information of target entity pairs. 
     Finally, DocRE will integrate the dependency syntax and constituency syntax to predict.
@@ -44,14 +46,56 @@
 \thesistableofcontents
 
 \chapter{绪\hspace{6pt}论}
+\section{研究的背景}
+关系提取是信息提取中的一项关键任务，旨在对非结构化文本中实体对之间的关系模式进行建模。
+有两种特定的场景：句子级关系提取和文档级关系提取。
+与句子级关系提取 \cite{sentenceRE-Dixit, sentenceRE-Lyu} 不同，文档级关系提取识别文档中实体对之间的关系标签。
+因此，文档级关系提取更好地满足了实际需求，最近受到了越来越多的关注。\par
+
+文档级关系提取面临的一个巨大障碍是推断长句中实体对的关系，这是因为长句中通常包含不相关甚至有噪声的信息。
+图 \ref{fig_exam}是一个例子，它包括一对来自同一文档中的句子级关系和文档级关系。
+为了推断Louis Chollet和Conservatoire de Paris之间的关系，模型应该能够排除不相关实体的影响，并找出句子2中的“He”一词指的是“Louis Cholet”。
+然而，由于现有的文档级关系提取模型 \cite{bai-etal-2021-syntax} 经常会被大量不相关的信息所淹没，从而无法捕捉到类似的关键信息。 \par
+
+最近，预训练语言模型在许多下游任务中显示出巨大的潜力。
+一些工作\cite{ye-etal-2020-co-ferential, zhou2021document}试图通过预训练语言模型隐含地捕捉到实体之间的这种交互，但是最近的研究 \cite{sundaraman2019syntax, bai-etal-2021-syntax, liu2023document} 表明通过预训练语言模型隐式学习的交互与黄金标记之间仍然存在很大差距。
+因此，对于文档级关系提取，隐含地学习一个有指导意义的上下文是不够的。
+而语法信息在句子级关系提取 \cite{xu-etal-2016-improved, qin-etal-2021-relation} 中得到了广泛的应用，但在文档级关系提取的场景下尚未得到充分的探索。
+因此本文通过融合语法信息作为辅助，来改进文档级关系提取。\par
+
+\begin{figure}
+    \includegraphics[height=0.5\textwidth]{misc/example1.pdf}
+    \label{fig_exam}
+    \caption{
+        来自DocRED数据集的一对句子级关系实例和文档级关系实例。
+        我们将不同的实体和关系标注为不同的颜色来突出不相关实体对关系预测的影响。
+    }
+\end{figure}
+
+\section{研究的主要内容}
+
+\section{研究的主要贡献与创新}
+
+\section{研究的结构安排}
 
 \chapter{关系抽取研究}
+\newpage
+1
+
+\newpage
 
 \chapter{语法信息研究}
-
+\newpage
+1
+\newpage
 \chapter{基于语法树的文档级关系抽取研究}
-
+\newpage
+1
+\newpage
 \chapter{基于语法树的文档级关系抽取实验结果}
+\newpage
+1
+\newpage
 \chapter{结论}
 \thesisacknowledgement
 在攻读计算机学士学位期间，首先热烈感谢我的导师康昭教授。经过风风雨雨的研究，我得到了他的无私关怀和支持。在此特别表达感谢之情。我还要感谢我的一直以来的帮助者们，包括学院的老师、同学、同事，以及所有支持和关心我的人。我也要感谢我的家人，他们给予我强大的内心支持和生活的安定和稳定。
