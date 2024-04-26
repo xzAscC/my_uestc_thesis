@@ -14,5 +14,4 @@
 !./example.pdf
 
 .DS_Store
-install-tl-unx.tar.gz
-install-tl-20240424/
+*.ttf
