@@ -7,7 +7,8 @@
 \major{计算机科学与技术}{Computer Science and Technology}
 \studentnumber{2020080902004}
 
-\usepackage{graphicx}
+\usepackage{graphicx} % for graph
+\usepackage{verbatim} % multi-line comment
 
 \begin{document}
 
@@ -16,26 +17,26 @@
 \begin{chineseabstract}
     文档级关系抽取旨在识别单个文档中实体对之间的关系。
     它需要处理多个句子并对这些句子进行推理。
-    最先进的文档级关系抽取使用图形结构来连接文档中的实体，来捕获文档中的实体对的交互。 
+    最先进的文档级关系抽取使用图形结构来连接文档中的实体，来捕获文档中的实体对的交互。
     但是这些方法没有充分利用在句子级关系抽取中被充分研究的语法信息。
     在本文中我们以将语法树融合到文档级关系抽取中为主要研究内容，重点研究了使用依赖语法树，依存语法树进行文档级关系抽取算法的实现，以及怎么调整依赖语法树和依存语法树的在文档级关系抽取中的权重问题。
     我们利用依存语法树来聚合整个句子信息，并为目标实体对选择有指导意义的句子。
     同时我们利用依赖语法树对整个文档进行细粒度的分析，并选择其中重要的单词增强目标实体对的信息。
     文档级关系抽取将同时利用依赖语法树和依存语法树进行预测。
-    通过在不同领域的数据集上的实验结果证明了该方法的有效性。 
+    通过在不同领域的数据集上的实验结果证明了该方法的有效性。
 
 
-\chinesekeyword{文档级关系抽取，依赖语法树，依存语法树，语法树融合}
+    \chinesekeyword{文档级关系抽取，依赖语法树，依存语法树，语法树融合}
 \end{chineseabstract}
 
 \begin{englishabstract}
-    Document-level Relation Extraction (DocRE) aims to identify relation labels between entity pairs within a single document. 
+    Document-level Relation Extraction (DocRE) aims to identify relation labels between entity pairs within a single document.
     It requires handling several sentences and reasoning over them.
     State-of-the-art DocRE methods use a graph structure to connect entities across the document to capture interaction between entity pairs in the document.
-    However, this is insufficient to fully exploit the rich syntax information in the document, which is widely used in sentence-level Relation Extraction(RE). 
-    In this thesis, we focus on integrating syntax trees into DocRE as the main research topic, and investigate the effective and effient implementation of DocRE algorithms using dependency syntax tree and constituency syntax tree, as well as how to adjust the weight of dependency syntax tree and constituency syntax tree in the extraction. 
-    It uses constituency syntax to aggregate the whole sentence information and select the instructive sentences for the pairs of targets. 
-    Meanwhile, it exploits the dependency syntax in a graph structure with constituency syntax enhancement and selects the most important words between entity pairs based on the dependency graph to enhance the information of target entity pairs. 
+    However, this is insufficient to fully exploit the rich syntax information in the document, which is widely used in sentence-level Relation Extraction(RE).
+    In this thesis, we focus on integrating syntax trees into DocRE as the main research topic, and investigate the effective and effient implementation of DocRE algorithms using dependency syntax tree and constituency syntax tree, as well as how to adjust the weight of dependency syntax tree and constituency syntax tree in the extraction.
+    It uses constituency syntax to aggregate the whole sentence information and select the instructive sentences for the pairs of targets.
+    Meanwhile, it exploits the dependency syntax in a graph structure with constituency syntax enhancement and selects the most important words between entity pairs based on the dependency graph to enhance the information of target entity pairs.
     Finally, DocRE will integrate the dependency syntax and constituency syntax to predict.
     The experimental results on datasets from various domains demonstrate the effectiveness of the proposed method.
 
@@ -46,6 +47,10 @@
 \thesistableofcontents
 
 \chapter{绪\hspace{6pt}论}
+
+\begin{comment}
+    课题背景，研究现状, 理论依据，实验基础，发展趋势以及本课题的理论意义
+\end{comment}
 \section{研究的背景}
 关系提取是信息提取中的一项关键任务，旨在对非结构化文本中实体对之间的关系模式进行建模。
 有两种特定的场景：句子级关系提取和文档级关系提取。
@@ -57,20 +62,12 @@
 为了推断Louis Chollet和Conservatoire de Paris之间的关系，模型应该能够排除不相关实体的影响，并找出句子2中的“He”一词指的是“Louis Cholet”。
 然而，由于现有的文档级关系提取模型 \cite{bai-etal-2021-syntax} 经常会被大量不相关的信息所淹没，从而无法捕捉到类似的关键信息。 \par
 
+
 最近，预训练语言模型在许多下游任务中显示出巨大的潜力。
 一些工作\cite{ye-etal-2020-co-ferential, zhou2021document}试图通过预训练语言模型隐含地捕捉到实体之间的这种交互，但是最近的研究 \cite{sundaraman2019syntax, bai-etal-2021-syntax, liu2023document} 表明通过预训练语言模型隐式学习的交互与黄金标记之间仍然存在很大差距。
 因此，对于文档级关系提取，隐含地学习一个有指导意义的上下文是不够的。
 而语法信息在句子级关系提取 \cite{xu-etal-2016-improved, qin-etal-2021-relation} 中得到了广泛的应用，但在文档级关系提取的场景下尚未得到充分的探索。
 因此本文通过融合语法信息作为辅助，来改进文档级关系提取。\par
-
-\begin{figure}
-    \includegraphics[height=0.5\textwidth]{misc/example1.pdf}
-    \label{fig_exam}
-    \caption{
-        来自DocRED数据集的一对句子级关系实例和文档级关系实例。
-        我们将不同的实体和关系标注为不同的颜色来突出不相关实体对关系预测的影响。
-    }
-\end{figure}
 
 \section{研究的主要内容}
 
@@ -78,6 +75,16 @@
 
 \section{研究的结构安排}
 
+\begin{comment}
+    课题的方案论证，包括课题的主要任务，功能要求，性能指标等
+    课题的工作
+    A. 理论课题
+(a) 理论基础和原理
+(b) 理论分析、推导、数学模型
+(c) 模型仿真（含数据、曲线等）
+
+also: 图表的标注先写在图表的上方，明天再次询问这个问题
+\end{comment}
 \chapter{关系抽取研究}
 \newpage
 1
@@ -97,6 +104,15 @@
 1
 \newpage
 \chapter{结论}
+\begin{comment}
+    在工作总结的基础上，经过分析、归纳，明确结论：
+①系统功能、指标等是否实现或达到课题要求（工程技
+术及软件课题）
+②理论结果是否正确、所建模型是否合理（理论课题）
+41③所阐述的观点是否正确（文科课题）
+④本课题有待进一步解决的问题及方向
+⑤本人收获及体会
+\end{comment}
 \thesisacknowledgement
 在攻读计算机学士学位期间，首先热烈感谢我的导师康昭教授。经过风风雨雨的研究，我得到了他的无私关怀和支持。在此特别表达感谢之情。我还要感谢我的一直以来的帮助者们，包括学院的老师、同学、同事，以及所有支持和关心我的人。我也要感谢我的家人，他们给予我强大的内心支持和生活的安定和稳定。
 
