@@ -207,7 +207,7 @@ url={https://link.springer.com/chapter/10.1007/978-3-030-17083-7_17}
     abstract = "Inter-sentence relation extraction deals with a number of complex semantic relationships in documents, which require local, non-local, syntactic and semantic dependencies. Existing methods do not fully exploit such dependencies. We present a novel inter-sentence relation extraction model that builds a labelled edge graph convolutional neural network model on a document-level graph. The graph is constructed using various inter- and intra-sentence dependencies to capture local and non-local dependency information. In order to predict the relation of an entity pair, we utilise multi-instance learning with bi-affine pairwise scoring. Experimental results show that our model achieves comparable performance to the state-of-the-art neural models on two biochemistry datasets. Our analysis shows that all the types in the graph are effective for inter-sentence relation extraction.",
 }
 % 18
-@inproceedings{ye-etal-2020-coreferential,
+@inproceedings{y2020-coreferential,
     title = "{C}oreferential {R}easoning {L}earning for {L}anguage {R}epresentation",
     author = "Ye, Deming  and
       Lin, Yankai  and
@@ -585,4 +585,44 @@ issn = {0950-7051},
 doi = {https://doi.org/10.1016/j.knosys.2021.107659},
 author = {Yong Dai and Linjun Shou and Ming Gong and Xiaolin Xia and Zhao Kang and Zenglin Xu and Daxin Jiang},
 keywords = {Graph Neural Networks, Text classification, External knowledge, Graph fusion},
+}
+
+@article{delaunay2023comprehensive,
+  title={A Comprehensive Survey of Document-level Relation Extraction (2016-2022)},
+  author={Delaunay, Julien and Tran, Thi Hong Hanh and Gonz{\'a}lez-Gallardo, Carlos-Emiliano and Bordea, Georgeta and Sidere, Nicolas and Doucet, Antoine},
+  journal={arXiv preprint arXiv:2309.16396},
+  year={2023}
+}
+@ARTICLE{9098945,
+  author={Han, Xiaoyu and Wang, Lei},
+  journal={IEEE Access}, 
+  title={A Novel Document-Level Relation Extraction Method Based on BERT and Entity Information}, 
+  year={2020},
+  volume={8},
+  number={},
+  pages={96912-96919},
+  keywords={Feature extraction;Bit error rate;Data mining;Task analysis;Semantics;Australia;Neural networks;Relation extraction;document-level;BERT;entity information;one-pass},
+  doi={10.1109/ACCESS.2020.2996642}
+}
+@inproceedings{huang-etal-2021-three,
+    title = "Three Sentences Are All You Need: Local Path Enhanced Document Relation Extraction",
+    author = "Huang, Quzhe  and
+      Zhu, Shengqi  and
+      Feng, Yansong  and
+      Ye, Yuan  and
+      Lai, Yuxuan  and
+      Zhao, Dongyan",
+    editor = "Zong, Chengqing  and
+      Xia, Fei  and
+      Li, Wenjie  and
+      Navigli, Roberto",
+    booktitle = "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 2: Short Papers)",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.acl-short.126",
+    doi = "10.18653/v1/2021.acl-short.126",
+    pages = "998--1004",
+    abstract = "Document-level Relation Extraction (RE) is a more challenging task than sentence RE as it often requires reasoning over multiple sentences. Yet, human annotators usually use a small number of sentences to identify the relationship between a given entity pair. In this paper, we present an embarrassingly simple but effective method to heuristically select evidence sentences for document-level RE, which can be easily combined with BiLSTM to achieve good performance on benchmark datasets, even better than fancy graph neural network based methods. We have released our code at \url{https://github.com/AndrewZhe/Three-Sentences-Are-All-You-Need}.",
 }
