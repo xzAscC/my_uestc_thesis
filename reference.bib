@@ -624,5 +624,83 @@ keywords = {Graph Neural Networks, Text classification, External knowledge, Grap
     url = "https://aclanthology.org/2021.acl-short.126",
     doi = "10.18653/v1/2021.acl-short.126",
     pages = "998--1004",
-    abstract = "Document-level Relation Extraction (RE) is a more challenging task than sentence RE as it often requires reasoning over multiple sentences. Yet, human annotators usually use a small number of sentences to identify the relationship between a given entity pair. In this paper, we present an embarrassingly simple but effective method to heuristically select evidence sentences for document-level RE, which can be easily combined with BiLSTM to achieve good performance on benchmark datasets, even better than fancy graph neural network based methods. We have released our code at \url{https://github.com/AndrewZhe/Three-Sentences-Are-All-You-Need}.",
+    abstract = "Document-level Relation Extraction (RE) is a more challenging task than sentence RE as it often requires reasoning over multiple sentences. Yet, human annotators usually use a small number of sentences to identify the relationship between a given entity pair. In this paper, we present an embarrassingly simple but effective method to heuristically select evidence sentences for document-level RE, which can be easily combined with BiLSTM to achieve good performance on benchmark datasets, even better than fancy graph neural network based methods. We have released our code at \url{https://github.com/AndrewZhe/Three-Sentences-Are-All-You-Need}."
 }
+
+@inproceedings{zhang-etal-2020-document,
+    title = "Document-level Relation Extraction with Dual-tier Heterogeneous Graph",
+    author = "Zhang, Zhenyu  and
+      Yu, Bowen  and
+      Shu, Xiaobo  and
+      Liu, Tingwen  and
+      Tang, Hengzhu  and
+      Yubin, Wang  and
+      Guo, Li",
+    editor = "Scott, Donia  and
+      Bel, Nuria  and
+      Zong, Chengqing",
+    booktitle = "Proceedings of the 28th International Conference on Computational Linguistics",
+    month = dec,
+    year = "2020",
+    address = "Barcelona, Spain (Online)",
+    publisher = "International Committee on Computational Linguistics",
+    url = "https://aclanthology.org/2020.coling-main.143",
+    doi = "10.18653/v1/2020.coling-main.143",
+    pages = "1630--1641"
+}
+@article{10.1093/database/bax024,
+    author = {Gu, Jinghang and Sun, Fuqing and Qian, Longhua and Zhou, Guodong},
+    title = "{Chemical-induced disease relation extraction via convolutional neural network}",
+    journal = {Database},
+    volume = {2017},
+    pages = {bax024},
+    year = {2017},
+    month = {04},
+    abstract = "{This article describes our work on the BioCreative-V chemical–disease relation (CDR) extraction task, which employed a maximum entropy (ME) model and a convolutional neural network model for relation extraction at inter- and intra-sentence level, respectively. In our work, relation extraction between entity concepts in documents was simplified to relation extraction between entity mentions. We first constructed pairs of chemical and disease mentions as relation instances for training and testing stages, then we trained and applied the ME model and the convolutional neural network model for inter- and intra-sentence level, respectively. Finally, we merged the classification results from mention level to document level to acquire the final relations between chemical and disease concepts. The evaluation on the BioCreative-V CDR corpus shows the effectiveness of our proposed approach.Database URL:http://www.biocreative.org/resources/corpora/biocreative-v-cdr-corpus/}",
+    issn = {1758-0463},
+    doi = {10.1093/database/bax024},
+    url = {https://doi.org/10.1093/database/bax024},
+    eprint = {https://academic.oup.com/database/article-pdf/doi/10.1093/database/bax024/19233027/bax024.pdf},
+}
+
+@article{li2018chemical,
+  title={Chemical-induced disease extraction via recurrent piecewise convolutional neural networks},
+  author={Li, Haodi and Yang, Ming and Chen, Qingcai and Tang, Buzhou and Wang, Xiaolong and Yan, Jun},
+  journal={BMC medical informatics and decision making},
+  volume={18},
+  pages={45--51},
+  year={2018},
+  publisher={Springer}
+}
+@article{mandya2018combining,
+  title={Combining long short term memory and convolutional neural network for cross-sentence n-ary relation extraction},
+  author={Mandya, Angrosh and Bollegala, Danushka and Coenen, Frans and Atkinson, Katie},
+  journal={arXiv preprint arXiv:1811.00845},
+  year={2018}
+}
+
+@inproceedings{wu2019renet,
+  title={Renet: A deep learning approach for extracting gene-disease associations from literature},
+  author={Wu, Ye and Luo, Ruibang and Leung, Henry CM and Ting, Hing-Fung and Lam, Tak-Wah},
+  booktitle={Research in Computational Molecular Biology: 23rd Annual International Conference, RECOMB 2019, Washington, DC, USA, May 5-8, 2019, Proceedings 23},
+  pages={272--284},
+  year={2019},
+  organization={Springer}
+}
+@article{renet2,
+    author = {Su, Junhao and Wu, Ye and Ting, Hing-Fung and Lam, Tak-Wah and Luo, Ruibang},
+    title = "{RENET2: high-performance full-text gene–disease relation extraction with iterative training data expansion}",
+    journal = {NAR Genomics and Bioinformatics},
+    volume = {3},
+    number = {3},
+    pages = {lqab062},
+    year = {2021},
+    month = {07},
+    abstract = "{Relation extraction (RE) is a fundamental task for extracting gene–disease associations from biomedical text. Many state-of-the-art tools have limited capacity, as they can extract gene–disease associations only from single sentences or abstract texts. A few studies have explored extracting gene–disease associations from full-text articles, but there exists a large room for improvements. In this work, we propose RENET2, a deep learning-based RE method, which implements Section Filtering and ambiguous relations modeling to extract gene–disease associations from full-text articles. We designed a novel iterative training data expansion strategy to build an annotated full-text dataset to resolve the scarcity of labels on full-text articles. In our experiments, RENET2 achieved an F1-score of 72.13\\% for extracting gene–disease associations from an annotated full-text dataset, which was 27.22, 30.30, 29.24 and 23.87\\% higher than BeFree, DTMiner, BioBERT and RENET, respectively. We applied RENET2 to (i) ∼1.89M full-text articles from PubMed Central and found ∼3.72M gene–disease associations; and (ii) the LitCovid articles and ranked the top 15 proteins associated with COVID-19, supported by recent articles. RENET2 is an efficient and accurate method for full-text gene–disease association extraction. The source-code, manually curated abstract/full-text training data, and results of RENET2 are available at GitHub.}",
+    issn = {2631-9268},
+    doi = {10.1093/nargab/lqab062},
+    url = {https://doi.org/10.1093/nargab/lqab062},
+    eprint = {https://academic.oup.com/nargab/article-pdf/3/3/lqab062/56833744/lqab062.pdf},
+}
+
+
