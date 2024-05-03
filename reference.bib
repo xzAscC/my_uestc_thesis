@@ -850,3 +850,156 @@ DOI = {10.3390/app12031599}
   volume = {abs/1706.03762},
   year = 2017
 }
+
+@inproceedings{quirk-poon-2017-distant,
+    title = "Distant Supervision for Relation Extraction beyond the Sentence Boundary",
+    author = "Quirk, Chris  and
+      Poon, Hoifung",
+    editor = "Lapata, Mirella  and
+      Blunsom, Phil  and
+      Koller, Alexander",
+    booktitle = "Proceedings of the 15th Conference of the {E}uropean Chapter of the Association for Computational Linguistics: Volume 1, Long Papers",
+    month = apr,
+    year = "2017",
+    address = "Valencia, Spain",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/E17-1110",
+    pages = "1171--1182",
+    abstract = "The growing demand for structured knowledge has led to great interest in relation extraction, especially in cases with limited supervision. However, existing distance supervision approaches only extract relations expressed in single sentences. In general, cross-sentence relation extraction is under-explored, even in the supervised-learning setting. In this paper, we propose the first approach for applying distant supervision to cross-sentence relation extraction. At the core of our approach is a graph representation that can incorporate both standard dependencies and discourse relations, thus providing a unifying way to model relations within and across sentences. We extract features from multiple paths in this graph, increasing accuracy and robustness when confronted with linguistic variation and analysis error. Experiments on an important extraction task for precision medicine show that our approach can learn an accurate cross-sentence extractor, using only a small existing knowledge base and unlabeled text from biomedical research articles. Compared to the existing distant supervision paradigm, our approach extracted twice as many relations at similar precision, thus demonstrating the prevalence of cross-sentence relations and the promise of our approach.",
+}
+
+@article{peng-etal-2017-cross,
+    title = "Cross-Sentence N-ary Relation Extraction with Graph {LSTM}s",
+    author = "Peng, Nanyun  and
+      Poon, Hoifung  and
+      Quirk, Chris  and
+      Toutanova, Kristina  and
+      Yih, Wen-tau",
+    editor = "Lee, Lillian  and
+      Johnson, Mark  and
+      Toutanova, Kristina",
+    journal = "Transactions of the Association for Computational Linguistics",
+    volume = "5",
+    year = "2017",
+    address = "Cambridge, MA",
+    publisher = "MIT Press",
+    url = "https://aclanthology.org/Q17-1008",
+    doi = "10.1162/tacl_a_00049",
+    pages = "101--115",
+    abstract = "Past work in relation extraction has focused on binary relations in single sentences. Recent NLP inroads in high-value domains have sparked interest in the more general setting of extracting n-ary relations that span multiple sentences. In this paper, we explore a general relation extraction framework based on graph long short-term memory networks (graph LSTMs) that can be easily extended to cross-sentence n-ary relation extraction. The graph formulation provides a unified way of exploring different LSTM approaches and incorporating various intra-sentential and inter-sentential dependencies, such as sequential, syntactic, and discourse relations. A robust contextual representation is learned for the entities, which serves as input to the relation classifier. This simplifies handling of relations with arbitrary arity, and enables multi-task learning with related relations. We evaluate this framework in two important precision medicine settings, demonstrating its effectiveness with both conventional supervised learning and distant supervision. Cross-sentence extraction produced larger knowledge bases. and multi-task learning significantly improved extraction accuracy. A thorough analysis of various LSTM approaches yielded useful insight the impact of linguistic analysis on extraction accuracy.",
+}
+
+@inproceedings{tai-etal-2015-improved,
+    title = "Improved Semantic Representations From Tree-Structured Long Short-Term Memory Networks",
+    author = "Tai, Kai Sheng  and
+      Socher, Richard  and
+      Manning, Christopher D.",
+    editor = "Zong, Chengqing  and
+      Strube, Michael",
+    booktitle = "Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)",
+    month = jul,
+    year = "2015",
+    address = "Beijing, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P15-1150",
+    doi = "10.3115/v1/P15-1150",
+    pages = "1556--1566",
+}
+
+@inproceedings{christopoulou-etal-2018-walk,
+    title = "A Walk-based Model on Entity Graphs for Relation Extraction",
+    author = "Christopoulou, Fenia  and
+      Miwa, Makoto  and
+      Ananiadou, Sophia",
+    editor = "Gurevych, Iryna  and
+      Miyao, Yusuke",
+    booktitle = "Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+    month = jul,
+    year = "2018",
+    address = "Melbourne, Australia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P18-2014",
+    doi = "10.18653/v1/P18-2014",
+    pages = "81--88",
+    abstract = "We present a novel graph-based neural network model for relation extraction. Our model treats multiple pairs in a sentence simultaneously and considers interactions among them. All the entities in a sentence are placed as nodes in a fully-connected graph structure. The edges are represented with position-aware contexts around the entity pairs. In order to consider different relation paths between two entities, we construct up to $l$-length walks between each pair. The resulting walks are merged and iteratively used to update the edge representations into longer walks representations. We show that the model achieves performance comparable to the state-of-the-art systems on the ACE 2005 dataset without using any external tools.",
+}
+
+@inproceedings{christopoulou-etal-2019-connecting,
+    title = "Connecting the Dots: Document-level Neural Relation Extraction with Edge-oriented Graphs",
+    author = "Christopoulou, Fenia  and
+      Miwa, Makoto  and
+      Ananiadou, Sophia",
+    editor = "Inui, Kentaro  and
+      Jiang, Jing  and
+      Ng, Vincent  and
+      Wan, Xiaojun",
+    booktitle = "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)",
+    month = nov,
+    year = "2019",
+    address = "Hong Kong, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D19-1498",
+    doi = "10.18653/v1/D19-1498",
+    pages = "4925--4936",
+    abstract = "Document-level relation extraction is a complex human process that requires logical inference to extract relationships between named entities in text. Existing approaches use graph-based neural models with words as nodes and edges as relations between them, to encode relations across sentences. These models are node-based, i.e., they form pair representations based solely on the two target node representations. However, entity relations can be better expressed through unique edge representations formed as paths between nodes. We thus propose an edge-oriented graph neural model for document-level relation extraction. The model utilises different types of nodes and edges to create a document-level graph. An inference mechanism on the graph edges enables to learn intra- and inter-sentence relations using multi-instance learning internally. Experiments on two document-level biomedical datasets for chemical-disease and gene-disease associations show the usefulness of the proposed edge-oriented approach.",
+}
+
+@inproceedings{sahu-etal-2019-inter,
+    title = "Inter-sentence Relation Extraction with Document-level Graph Convolutional Neural Network",
+    author = "Sahu, Sunil Kumar  and
+      Christopoulou, Fenia  and
+      Miwa, Makoto  and
+      Ananiadou, Sophia",
+    editor = "Korhonen, Anna  and
+      Traum, David  and
+      M{\`a}rquez, Llu{\'\i}s",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P19-1423",
+    doi = "10.18653/v1/P19-1423",
+    pages = "4309--4316",
+    abstract = "Inter-sentence relation extraction deals with a number of complex semantic relationships in documents, which require local, non-local, syntactic and semantic dependencies. Existing methods do not fully exploit such dependencies. We present a novel inter-sentence relation extraction model that builds a labelled edge graph convolutional neural network model on a document-level graph. The graph is constructed using various inter- and intra-sentence dependencies to capture local and non-local dependency information. In order to predict the relation of an entity pair, we utilise multi-instance learning with bi-affine pairwise scoring. Experimental results show that our model achieves comparable performance to the state-of-the-art neural models on two biochemistry datasets. Our analysis shows that all the types in the graph are effective for inter-sentence relation extraction.",
+}
+
+@inproceedings{guo-etal-2019-attention,
+    title = "Attention Guided Graph Convolutional Networks for Relation Extraction",
+    author = "Guo, Zhijiang  and
+      Zhang, Yan  and
+      Lu, Wei",
+    editor = "Korhonen, Anna  and
+      Traum, David  and
+      M{\`a}rquez, Llu{\'\i}s",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P19-1024",
+    doi = "10.18653/v1/P19-1024",
+    pages = "241--251",
+    abstract = "Dependency trees convey rich structural information that is proven useful for extracting relations among entities in text. However, how to effectively make use of relevant information while ignoring irrelevant information from the dependency trees remains a challenging research question. Existing approaches employing rule based hard-pruning strategies for selecting relevant partial dependency structures may not always yield optimal results. In this work, we propose Attention Guided Graph Convolutional Networks (AGGCNs), a novel model which directly takes full dependency trees as inputs. Our model can be understood as a soft-pruning approach that automatically learns how to selectively attend to the relevant sub-structures useful for the relation extraction task. Extensive results on various tasks including cross-sentence n-ary relation extraction and large-scale sentence-level relation extraction show that our model is able to better leverage the structural information of the full dependency trees, giving significantly better results than previous approaches.",
+}
+
+@article{Gupta_Rajaram_Schütze_Runkler_2019, title={Neural Relation Extraction within and across Sentence Boundaries}, volume={33}, url={https://ojs.aaai.org/index.php/AAAI/article/view/4617}, DOI={10.1609/aaai.v33i01.33016513}, abstractNote={&lt;p&gt;Past work in relation extraction mostly focuses on binary relation between entity pairs &lt;em&gt;within single sentence&lt;/em&gt;. Recently, the NLP community has gained interest in relation extraction in entity pairs &lt;em&gt;spanning multiple sentences&lt;/em&gt;. In this paper, we propose a novel architecture for this task: inter-sentential dependency-based neural networks (iDepNN). iDepNN models the shortest and augmented dependency paths via recurrent and recursive neural networks to extract relationships within (intra-) and across (inter-) sentence boundaries. Compared to SVM and neural network baselines, iDepNN is more robust to false positives in relationships spanning sentences. We evaluate our models on four datasets from newswire (MUC6) and medical (BioNLP shared task) domains that achieve state-of-the-art performance and show a better balance in precision and recall for inter-sentential relationships. We perform better than 11 teams participating in the BioNLP shared task 2016 and achieve a gain of 5.2% (0.587 vs 0.558) in &lt;em&gt;F&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt; over the winning team. We also release the crosssentence annotations for MUC6.&lt;/p&gt;}, number={01}, journal={Proceedings of the AAAI Conference on Artificial Intelligence}, author={Gupta, Pankaj and Rajaram, Subburam and Schütze, Hinrich and Runkler, Thomas}, year={2019}, month={Jul.}, pages={6513-6520} }
+
+@inproceedings{minh-tran-etal-2020-dots,
+    title = "The Dots Have Their Values: Exploiting the Node-Edge Connections in Graph-based Neural Models for Document-level Relation Extraction",
+    author = "Minh Tran, Hieu  and
+      Nguyen, Minh Trung  and
+      Nguyen, Thien Huu",
+    editor = "Cohn, Trevor  and
+      He, Yulan  and
+      Liu, Yang",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2020",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.findings-emnlp.409",
+    doi = "10.18653/v1/2020.findings-emnlp.409",
+    pages = "4561--4567",
+    abstract = "The goal of Document-level Relation Extraction (DRE) is to recognize the relations between entity mentions that can span beyond sentence boundary. The current state-of-the-art method for this problem has involved the graph-based edge-oriented model where the entity mentions, entities, and sentences in the documents are used as the nodes of the document graphs for representation learning. However, this model does not capture the representations for the nodes in the graphs, thus preventing it from effectively encoding the specific and relevant information of the nodes for DRE. To address this issue, we propose to explicitly compute the representations for the nodes in the graph-based edge-oriented model for DRE. These node representations allow us to introduce two novel representation regularization mechanisms to improve the representation vectors for DRE. The experiments show that our model achieves state-of-the-art performance on two benchmark datasets.",
+}
