@@ -1003,3 +1003,121 @@ DOI = {10.3390/app12031599}
     pages = "4561--4567",
     abstract = "The goal of Document-level Relation Extraction (DRE) is to recognize the relations between entity mentions that can span beyond sentence boundary. The current state-of-the-art method for this problem has involved the graph-based edge-oriented model where the entity mentions, entities, and sentences in the documents are used as the nodes of the document graphs for representation learning. However, this model does not capture the representations for the nodes in the graphs, thus preventing it from effectively encoding the specific and relevant information of the nodes for DRE. To address this issue, we propose to explicitly compute the representations for the nodes in the graph-based edge-oriented model for DRE. These node representations allow us to introduce two novel representation regularization mechanisms to improve the representation vectors for DRE. The experiments show that our model achieves state-of-the-art performance on two benchmark datasets.",
 }
+
+@inproceedings{luan-etal-2019-general,
+    title = "A general framework for information extraction using dynamic span graphs",
+    author = "Luan, Yi  and
+      Wadden, Dave  and
+      He, Luheng  and
+      Shah, Amy  and
+      Ostendorf, Mari  and
+      Hajishirzi, Hannaneh",
+    editor = "Burstein, Jill  and
+      Doran, Christy  and
+      Solorio, Thamar",
+    booktitle = "Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+    month = jun,
+    year = "2019",
+    address = "Minneapolis, Minnesota",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/N19-1308",
+    doi = "10.18653/v1/N19-1308",
+    pages = "3036--3046",
+    abstract = "We introduce a general framework for several information extraction tasks that share span representations using dynamically constructed span graphs. The graphs are dynamically constructed by selecting the most confident entity spans and linking these nodes with confidence-weighted relation types and coreferences. The dynamic span graph allow coreference and relation type confidences to propagate through the graph to iteratively refine the span representations. This is unlike previous multi-task frameworks for information extraction in which the only interaction between tasks is in the shared first-layer LSTM. Our framework significantly outperforms state-of-the-art on multiple information extraction tasks across multiple datasets reflecting different domains. We further observe that the span enumeration approach is good at detecting nested span entities, with significant F1 score improvement on the ACE dataset.",
+}
+
+@article{WANG2021107274,
+title = {Document-level relation extraction using evidence reasoning on RST-GRAPH},
+journal = {Knowledge-Based Systems},
+volume = {228},
+pages = {107274},
+year = {2021},
+issn = {0950-7051},
+doi = {https://doi.org/10.1016/j.knosys.2021.107274},
+url = {https://www.sciencedirect.com/science/article/pii/S0950705121005360},
+author = {Hailin Wang and Ke Qin and Guoming Lu and Jin Yin and Rufai Yusuf Zakari and Jim Wilson Owusu},
+keywords = {Relation extraction, Rhetorical structure theory, Document-level, Evidence reasoning},
+abstract = {Document-level relation extraction (RE) is a more challenging task providing a new perspective to solve larger and more complex text mining work. Recent document-level RE research following traditional sentence-level methods focus on learning a character representation of one sentence, highlighting the importance of partial words. When applied to a document with a longer text, more entities and more complicated semantics, these traditional methods lacking the ability to select evidence and further reason on them, may not be sufficient to identify all potential relation in the document in an intuitive way. However, some textual semantic associations between entities as well as logical structure of document could provide evidence to the potential relation and explain the reasoning process. Hence, by introducing Rhetorical Structure Theory (RST) as an external knowledge, this article attempts to select appropriate evidence and show reasoning process on a new document-graph, RST-GRAPH, which indicators valid semantic associations between multiple text units through RST and incorporates a set of reasoning modules to capture efficient evidence. Our experimental result shows that the RST-GRAPH, as the first work introducing RST, builds associations in an interpretable manner along discourse relation link between any entities compared to previous graph-oriented models, exhibits a clear process of evidence reasoning with competitive performance on DocRED dataset, and outperforms most existing models on the value of Ign F1.}
+}
+
+@article{LI2022109146,
+title = {Heterogenous affinity graph inference network for document-level relation extraction},
+journal = {Knowledge-Based Systems},
+volume = {250},
+pages = {109146},
+year = {2022},
+issn = {0950-7051},
+doi = {https://doi.org/10.1016/j.knosys.2022.109146},
+url = {https://www.sciencedirect.com/science/article/pii/S0950705122005706},
+author = {Rongzhen Li and Jiang Zhong and Zhongxuan Xue and Qizhu Dai and Xue Li},
+keywords = {Document-level relation extraction, Graph convolutional network, Relation reasoning},
+abstract = {Document-level relation extraction (Doc-level RE) is a more practical and challenging task, which provides a new perspective on obtaining factual knowledge from the more complex cross-sentence text. Recent Doc-level RE, based on pre-trained language models, uses graph neural networks to implicitly model relation reasoning in a document. However, it is not perfect that the model neglects explicit reasoning clues, leading to a weak ability and a lack of capability to model long-distance relationships. In this paper, we propose to explicitly model the heterogeneous affinity graph, HAG, including a mention graph (MG) and a coreference graph (CG). We first construct CG to cluster the expressions together as a coreference array. Then, MG and CG are incorporated to capture the reasoning clues from the adjacent affinity matrix. Moreover, HAG is aggregated into an isomorphic entity graph according to the noise suppression mechanism and RGCN. Finally, the classification is established on the normalized graph to infer the relations of entity pairs. Experimental results significantly outperform baselines by nearly 1.7% ∼ 2.0% in F1 on three public datasets, DocRED, DialogRE, and MPDD. We further conduct ablation experiments to demonstrate the effectiveness of the proposed approach.}
+}
+
+
+@article{barreyro2012working,
+  title={Working memory capacity and individual differences in the making of reinstatement and elaborative inferences},
+  author={Barreyro, Juan Pablo and Cevasco, Jazm{\'\i}n and Bur{\'\i}n, D{\'e}bora and Marotto, Carlos Molinari},
+  journal={The Spanish journal of psychology},
+  volume={15},
+  number={2},
+  pages={471--479},
+  year={2012},
+  publisher={Cambridge University Press}
+}
+
+@inproceedings{li-etal-2021-mrn,
+    title = "{MRN}: A Locally and Globally Mention-Based Reasoning Network for Document-Level Relation Extraction",
+    author = "Li, Jingye  and
+      Xu, Kang  and
+      Li, Fei  and
+      Fei, Hao  and
+      Ren, Yafeng  and
+      Ji, Donghong",
+    editor = "Zong, Chengqing  and
+      Xia, Fei  and
+      Li, Wenjie  and
+      Navigli, Roberto",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.findings-acl.117",
+    doi = "10.18653/v1/2021.findings-acl.117",
+    pages = "1359--1370",
+}
+
+
+@Article{app10031181,
+AUTHOR = {Kim, Kuekyeng and Hur, Yuna and Kim, Gyeongmin and Lim, Heuiseok},
+TITLE = {GREG: A Global Level Relation Extraction with Knowledge Graph Embedding},
+JOURNAL = {Applied Sciences},
+VOLUME = {10},
+YEAR = {2020},
+NUMBER = {3},
+ARTICLE-NUMBER = {1181},
+URL = {https://www.mdpi.com/2076-3417/10/3/1181},
+ISSN = {2076-3417},
+ABSTRACT = {In an age overflowing with information, the task of converting unstructured data into structured data are a vital task of great need. Currently, most relation extraction modules are more focused on the extraction of local mention-level relations—usually from short volumes of text. However, in most cases, the most vital and important relations are those that are described in length and detail. In this research, we propose GREG: A Global level Relation Extractor model using knowledge graph embeddings for document-level inputs. The model uses vector representations of mention-level ‘local’ relation’s to construct knowledge graphs that can represent the input document. The knowledge graph is then used to predict global level relations from documents or large bodies of text. The proposed model is largely divided into two modules which are synchronized during their training. Thus, each of the model’s modules is designed to deal with local relations and global relations separately. This allows the model to avoid the problem of struggling against loss of information due to too much information crunched into smaller sized representations when attempting global level relation extraction. Through evaluation, we have shown that the proposed model yields high performances in both predicting global level relations and local level relations consistently.},
+DOI = {10.3390/app10031181}
+}
+
+@inproceedings{zeng-etal-2021-sire,
+    title = "{SIRE}: Separate Intra- and Inter-sentential Reasoning for Document-level Relation Extraction",
+    author = "Zeng, Shuang  and
+      Wu, Yuting  and
+      Chang, Baobao",
+    editor = "Zong, Chengqing  and
+      Xia, Fei  and
+      Li, Wenjie  and
+      Navigli, Roberto",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.findings-acl.47",
+    doi = "10.18653/v1/2021.findings-acl.47",
+    pages = "524--534",
+}
