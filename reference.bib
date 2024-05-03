@@ -703,4 +703,150 @@ keywords = {Graph Neural Networks, Text classification, External knowledge, Grap
     eprint = {https://academic.oup.com/nargab/article-pdf/3/3/lqab062/56833744/lqab062.pdf},
 }
 
+@inproceedings{verga-etal-2018-simultaneously,
+    title = "Simultaneously Self-Attending to All Mentions for Full-Abstract Biological Relation Extraction",
+    author = "Verga, Patrick  and
+      Strubell, Emma  and
+      McCallum, Andrew",
+    editor = "Walker, Marilyn  and
+      Ji, Heng  and
+      Stent, Amanda",
+    booktitle = "Proceedings of the 2018 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers)",
+    month = jun,
+    year = "2018",
+    address = "New Orleans, Louisiana",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/N18-1080",
+    doi = "10.18653/v1/N18-1080",
+    pages = "872--884",
+    abstract = "Most work in relation extraction forms a prediction by looking at a short span of text within a single sentence containing a single entity pair mention. This approach often does not consider interactions across mentions, requires redundant computation for each mention pair, and ignores relationships expressed across sentence boundaries. These problems are exacerbated by the document- (rather than sentence-) level annotation common in biological text. In response, we propose a model which simultaneously predicts relationships between all mention pairs in a document. We form pairwise predictions over entire paper abstracts using an efficient self-attention encoder. All-pairs mention scores allow us to perform multi-instance learning by aggregating over mentions to form entity pair representations. We further adapt to settings without mention-level annotation by jointly training to predict named entities and adding a corpus of weakly labeled data. In experiments on two Biocreative benchmark datasets, we achieve state of the art performance on the Biocreative V Chemical Disease Relation dataset for models without external KB resources. We also introduce a new dataset an order of magnitude larger than existing human-annotated biological information extraction datasets and more accurate than distantly supervised alternatives.",
+}
 
+@article{corr,
+  author       = {Hong Wang and
+                  Christfried Focke and
+                  Rob Sylvester and
+                  Nilesh Mishra and
+                  William Yang Wang},
+  title        = {Fine-tune Bert for DocRED with Two-step Process},
+  journal      = {CoRR},
+  volume       = {abs/1909.11898},
+  year         = {2019},
+  url          = {http://arxiv.org/abs/1909.11898},
+  eprinttype    = {arXiv},
+  eprint       = {1909.11898},
+  timestamp    = {Tue, 16 May 2023 16:54:39 +0200},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-1909-11898.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{NIPS2013_1cecc7a7,
+ author = {Bordes, Antoine and Usunier, Nicolas and Garcia-Duran, Alberto and Weston, Jason and Yakhnenko, Oksana},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {C.J. Burges and L. Bottou and M. Welling and Z. Ghahramani and K.Q. Weinberger},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {Translating Embeddings for Modeling Multi-relational Data},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2013/file/1cecc7a77928ca8133fa24680a88d2f9-Paper.pdf},
+ volume = {26},
+ year = {2013}
+}
+
+
+@Article{app12031599,
+AUTHOR = {Kuang, Hailan and Chen, Haoran and Ma, Xiaolin and Liu, Xinhua},
+TITLE = {A Keyword Detection and Context Filtering Method for Document Level Relation Extraction},
+JOURNAL = {Applied Sciences},
+VOLUME = {12},
+YEAR = {2022},
+NUMBER = {3},
+ARTICLE-NUMBER = {1599},
+URL = {https://www.mdpi.com/2076-3417/12/3/1599},
+ISSN = {2076-3417},
+ABSTRACT = {Relation extraction (RE) is the core link of downstream tasks, such as information retrieval, question answering systems, and knowledge graphs. Most of the current mainstream RE technologies focus on the sentence-level corpus, which has great limitations in practical applications. Moreover, the previously proposed models based on graph neural networks or transformers try to obtain context features from the global text, ignoring the importance of local features. In practice, the relation between entity pairs can usually be inferred just through a few keywords. This paper proposes a keyword detection and context filtering method based on the Self-Attention mechanism for document-level RE. In addition, a Self-Attention Memory (SAM) module in ConvLSTM is introduced to process the document context and capture keyword features. By searching for word embeddings with high cross-attention of entity pairs, we update and record critical local features to enhance the performance of the final classification model. The experimental results on three benchmark datasets (DocRED, CDR, and GBA) show that our model achieves advanced performance within open and specialized domain relationship extraction tasks, with up to 0.87% F1 value improvement compared to the state-of-the-art methods. We have also designed experiments to demonstrate that our model can achieve superior results by its stronger contextual filtering capability compared to other methods.},
+DOI = {10.3390/app12031599}
+}
+
+@inproceedings{yu-etal-2022-relation,
+    title = "Relation-Specific Attentions over Entity Mentions for Enhanced Document-Level Relation Extraction",
+    author = "Yu, Jiaxin  and
+      Yang, Deqing  and
+      Tian, Shuyu",
+    editor = "Carpuat, Marine  and
+      de Marneffe, Marie-Catherine  and
+      Meza Ruiz, Ivan Vladimir",
+    booktitle = "Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jul,
+    year = "2022",
+    address = "Seattle, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.naacl-main.109",
+    doi = "10.18653/v1/2022.naacl-main.109",
+    pages = "1523--1529",
+    abstract = "Compared with traditional sentence-level relation extraction, document-level relation extraction is a more challenging task where an entity in a document may be mentioned multiple times and associated with multiple relations. However, most methods of document-level relation extraction do not distinguish between mention-level features and entity-level features, and just apply simple pooling operation for aggregating mention-level features into entity-level features. As a result, the distinct semantics between the different mentions of an entity are overlooked. To address this problem, we propose RSMAN in this paper which performs selective attentions over different entity mentions with respect to candidate relations. In this manner, the flexible and relation-specific representations of entities are obtained which indeed benefit relation classification. Our extensive experiments upon two benchmark datasets show that our RSMAN can bring significant improvements for some backbone models to achieve state-of-the-art performance, especially when an entity have multiple mentions in the document.",
+}
+
+@inproceedings{xiao-etal-2020-denoising,
+    title = "Denoising Relation Extraction from Document-level Distant Supervision",
+    author = "Xiao, Chaojun  and
+      Yao, Yuan  and
+      Xie, Ruobing  and
+      Han, Xu  and
+      Liu, Zhiyuan  and
+      Sun, Maosong  and
+      Lin, Fen  and
+      Lin, Leyu",
+    editor = "Webber, Bonnie  and
+      Cohn, Trevor  and
+      He, Yulan  and
+      Liu, Yang",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.emnlp-main.300",
+    doi = "10.18653/v1/2020.emnlp-main.300",
+    pages = "3683--3688",
+    abstract = "Distant supervision (DS) has been widely adopted to generate auto-labeled data for sentence-level relation extraction (RE) and achieved great results. However, the existing success of DS cannot be directly transferred to more challenging document-level relation extraction (DocRE), as the inevitable noise caused by DS may be even multiplied in documents and significantly harm the performance of RE. To alleviate this issue, we propose a novel pre-trained model for DocRE, which de-emphasize noisy DS data via multiple pre-training tasks. The experimental results on the large-scale DocRE benchmark show that our model can capture useful information from noisy data and achieve promising results.",
+}
+
+@inproceedings{tan-etal-2022-document,
+    title = "Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation",
+    author = "Tan, Qingyu  and
+      He, Ruidan  and
+      Bing, Lidong  and
+      Ng, Hwee Tou",
+    editor = "Muresan, Smaranda  and
+      Nakov, Preslav  and
+      Villavicencio, Aline",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2022",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-acl.132",
+    doi = "10.18653/v1/2022.findings-acl.132",
+    pages = "1672--1681",
+    abstract = "Document-level Relation Extraction (DocRE) is a more challenging task compared to its sentence-level counterpart. It aims to extract relations from multiple sentences at once. In this paper, we propose a semi-supervised framework for DocRE with three novel components. Firstly, we use an axial attention module for learning the interdependency among entity-pairs, which improves the performance on two-hop relations. Secondly, we propose an adaptive focal loss to tackle the class imbalance problem of DocRE. Lastly, we use knowledge distillation to overcome the differences between human annotated data and distantly supervised data. We conducted experiments on two DocRE datasets. Our model consistently outperforms strong baselines and its performance exceeds the previous SOTA by 1.36 F1 and 1.46 Ign{\_}F1 score on the DocRED leaderboard.",
+}
+
+@article{Xu_Wang_Lyu_Zhu_Mao_2021, title={Entity Structure Within and Throughout: Modeling Mention Dependencies for Document-Level Relation Extraction}, volume={35}, url={https://ojs.aaai.org/index.php/AAAI/article/view/17665}, abstractNote={Entities, as the essential elements in relation extraction tasks, exhibit certain structure. In this work, we formulate such entity structure as distinctive dependencies between mention pairs. We then propose SSAN, which incorporates these structural dependencies within the standard self-attention mechanism and throughout the overall encoding stage. Specifically, we design two alternative transformation modules inside each self-attention building block to produce attentive biases so as to adaptively regularize its attention flow. Our experiments demonstrate the usefulness of the proposed entity structure and the effectiveness of SSAN. It significantly outperforms competitive baselines, achieving new state-of-the-art results on three popular document-level relation extraction datasets. We further provide ablation and visualization to show how the entity structure guides the model for better relation extraction. Our code is publicly available.}, number={16}, journal={Proceedings of the AAAI Conference on Artificial Intelligence}, author={Xu, Benfeng and Wang, Quan and Lyu, Yajuan and Zhu, Yong and Mao, Zhendong}, year={2021}, month={May}, pages={14149-14157} }
+
+@article{Vaswani2017AttentionIA,
+  added-at = {2020-01-09T12:02:01.000+0100},
+  author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, Łukasz and Polosukhin, Illia},
+  biburl = {https://www.bibsonomy.org/bibtex/26c1129dc79583078fb0409fc7efda6aa/annakrause},
+  description = {Aktuelleres Paper zur Verwendung von Attention für die Neural Machine Translation},
+  ee = {http://arxiv.org/abs/1706.03762},
+  interhash = {b23d83da70543e00f9240cc009f1fcfa},
+  intrahash = {6c1129dc79583078fb0409fc7efda6aa},
+  journal = {CoRR},
+  keywords = {Attention Transformer machinelearning},
+  note = {cite arxiv:1706.03762Comment: 15 pages, 5 figures},
+  timestamp = {2020-01-09T12:02:01.000+0100},
+  title = {Attention Is All You Need},
+  url = {http://arxiv.org/abs/1706.03762},
+  volume = {abs/1706.03762},
+  year = 2017
+}
