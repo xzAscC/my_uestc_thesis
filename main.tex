@@ -402,13 +402,37 @@ CDR和GDA数据集也进行了类似的计算。
 
 
 \chapter{基于语法树的文档级关系抽取研究}
-% 说明文字和方法图表， 一页
+为了充分利用文档中的语法信息，本文融合了依存语法和依赖语法来改进文档级关系抽取。
+我们主要采用依赖图和依存树来合并额外的语法信息，并使用依存树中的信息来进一步增强依赖图的表示。
+依赖语法和依存语法描述了语法信息的互补但不同的方面。图 \ref{fig_syn_a}中的依赖图主要用于整合单个句子内的句法信息，该信息与原始纯文本具有很强的互补性，而图\ref{fig_syn_b}中的依存树则分层合理地组织单个句子的不同单词。\par
+
+我们算法的总体架构如图\ref{overview}所示。
+我们利用依赖语法和依存语法来构建依赖图和依存树，并利用预训练模型对文档中的单词进行编码。
+然后，我们使用树形长短期记忆模型来聚合来自依存树的信息，并通过图神经网络利用依赖图的信息，同时利用依存树来改进依赖图。
+我们通过可学习权重来调节依赖图和依存树的关系，以更好的利用这两种语法信息。
+
+\begin{figure*}
+    \centering{\includegraphics[height=0.5\linewidth]{misc/overview.pdf}}
+    \caption{整体算法的概述。我们使用选区语法的结果来增强依赖图，并通过动态加权融合获得实体对之间的关系。}
+\end{figure*}\label{overview}
+
+
+
+
+    
+\section{单词嵌入}
 
 \section{基于依存语法树的文档级关系抽取}
-% 两页
+\begin{figure}[t]
+    \includegraphics[width=0.5\textwidth]{misc/constituency.png}
+    \caption{依存树将句子组织成树结构，不仅可以引入额外的层次语法信息，还可以在任意粒度上探索子内容。非叶节点颜色为绿色。} 
+\end{figure}\label{fig_syn_b}
 
 \section{基于依赖语法树的文档级关系抽取}
-% 两页
+\begin{figure}[t]
+    \includegraphics[width=0.5\textwidth]{misc/dependency.png}
+    \caption{依赖语法树描述单个句子中单词之间的依赖关系。利用这样的语法信息可以显著地补充原始的纯文本，并捕捉相邻单词之间的关系。我们的模型将依赖树转换为依赖图。} 
+\end{figure}\label{fig_syn_a}
 
 \section{融合两种不同语法树结果的文档级关系抽取}
 % 两页
