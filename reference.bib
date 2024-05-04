@@ -46,14 +46,14 @@ url={https://ojs.aaai.org/index.php/AAAI/article/view/17717/17524}
 }
 % 5
 @article{Zhao2022DocumentlevelRE,
-  title={Document-level Relation Extraction with Context Guided Mention Integration and Inter-pair Reasoning},
-  author={Chao Zhao and Daojian Zeng and Lu Xu and Jianhua Dai},
-  journal={ArXiv},
+  title={Document-Level Relation Extraction With Context Guided Mention Integration and Inter-Pair Reasoning},
+  author={Daojian Zeng and Chao Zhao and Chao Jiang and Jianling Zhu and Jianhua Dai},
+  journal={IEEE/ACM Transactions on Audio, Speech, and Language Processing},
   year={2022},
-  volume={abs/2201.04826},
-url={https://arxiv.org/abs/2201.04826}
-}
-% 6
+  volume={31},
+  pages={3659-3666},
+  url={https://api.semanticscholar.org/CorpusID:245906424}
+}6
 @inproceedings{BERT,
   title={Bert: Pre-training of deep bidirectional transformers for language understanding},
   author={Kenton, Jacob Devlin Ming-Wei Chang and Toutanova, Lee Kristina},
@@ -705,7 +705,7 @@ keywords = {Graph Neural Networks, Text classification, External knowledge, Grap
     journal = {NAR Genomics and Bioinformatics},
     volume = {3},
     number = {3},
-    pages = {lqab062},
+    pages = {062},
     year = {2021},
     month = {07},
     abstract = "{Relation extraction (RE) is a fundamental task for extracting gene–disease associations from biomedical text. Many state-of-the-art tools have limited capacity, as they can extract gene–disease associations only from single sentences or abstract texts. A few studies have explored extracting gene–disease associations from full-text articles, but there exists a large room for improvements. In this work, we propose RENET2, a deep learning-based RE method, which implements Section Filtering and ambiguous relations modeling to extract gene–disease associations from full-text articles. We designed a novel iterative training data expansion strategy to build an annotated full-text dataset to resolve the scarcity of labels on full-text articles. In our experiments, RENET2 achieved an F1-score of 72.13\\% for extracting gene–disease associations from an annotated full-text dataset, which was 27.22, 30.30, 29.24 and 23.87\\% higher than BeFree, DTMiner, BioBERT and RENET, respectively. We applied RENET2 to (i) ∼1.89M full-text articles from PubMed Central and found ∼3.72M gene–disease associations; and (ii) the LitCovid articles and ranked the top 15 proteins associated with COVID-19, supported by recent articles. RENET2 is an efficient and accurate method for full-text gene–disease association extraction. The source-code, manually curated abstract/full-text training data, and results of RENET2 are available at GitHub.}",
@@ -756,7 +756,7 @@ keywords = {Graph Neural Networks, Text classification, External knowledge, Grap
  author = {Bordes, Antoine and Usunier, Nicolas and Garcia-Duran, Alberto and Weston, Jason and Yakhnenko, Oksana},
  booktitle = {Advances in Neural Information Processing Systems},
  editor = {C.J. Burges and L. Bottou and M. Welling and Z. Ghahramani and K.Q. Weinberger},
- pages = {},
+ pages = {2787–2795},
  publisher = {Curran Associates, Inc.},
  title = {Translating Embeddings for Modeling Multi-relational Data},
  url = {https://proceedings.neurips.cc/paper_files/paper/2013/file/1cecc7a77928ca8133fa24680a88d2f9-Paper.pdf},
@@ -774,7 +774,7 @@ YEAR = {2022},
 NUMBER = {3},
 ARTICLE-NUMBER = {1599},
 URL = {https://www.mdpi.com/2076-3417/12/3/1599},
-ISSN = {2076-3417},
+pages = {2076-3417},
 ABSTRACT = {Relation extraction (RE) is the core link of downstream tasks, such as information retrieval, question answering systems, and knowledge graphs. Most of the current mainstream RE technologies focus on the sentence-level corpus, which has great limitations in practical applications. Moreover, the previously proposed models based on graph neural networks or transformers try to obtain context features from the global text, ignoring the importance of local features. In practice, the relation between entity pairs can usually be inferred just through a few keywords. This paper proposes a keyword detection and context filtering method based on the Self-Attention mechanism for document-level RE. In addition, a Self-Attention Memory (SAM) module in ConvLSTM is introduced to process the document context and capture keyword features. By searching for word embeddings with high cross-attention of entity pairs, we update and record critical local features to enhance the performance of the final classification model. The experimental results on three benchmark datasets (DocRED, CDR, and GBA) show that our model achieves advanced performance within open and specialized domain relationship extraction tasks, with up to 0.87% F1 value improvement compared to the state-of-the-art methods. We have also designed experiments to demonstrate that our model can achieve superior results by its stronger contextual filtering capability compared to other methods.},
 DOI = {10.3390/app12031599}
 }
@@ -1101,18 +1101,15 @@ abstract = {Document-level relation extraction (Doc-level RE) is a more practica
 }
 
 
-@Article{app10031181,
-AUTHOR = {Kim, Kuekyeng and Hur, Yuna and Kim, Gyeongmin and Lim, Heuiseok},
-TITLE = {GREG: A Global Level Relation Extraction with Knowledge Graph Embedding},
-JOURNAL = {Applied Sciences},
-VOLUME = {10},
-YEAR = {2020},
-NUMBER = {3},
-ARTICLE-NUMBER = {1181},
-URL = {https://www.mdpi.com/2076-3417/10/3/1181},
-ISSN = {2076-3417},
-ABSTRACT = {In an age overflowing with information, the task of converting unstructured data into structured data are a vital task of great need. Currently, most relation extraction modules are more focused on the extraction of local mention-level relations—usually from short volumes of text. However, in most cases, the most vital and important relations are those that are described in length and detail. In this research, we propose GREG: A Global level Relation Extractor model using knowledge graph embeddings for document-level inputs. The model uses vector representations of mention-level ‘local’ relation’s to construct knowledge graphs that can represent the input document. The knowledge graph is then used to predict global level relations from documents or large bodies of text. The proposed model is largely divided into two modules which are synchronized during their training. Thus, each of the model’s modules is designed to deal with local relations and global relations separately. This allows the model to avoid the problem of struggling against loss of information due to too much information crunched into smaller sized representations when attempting global level relation extraction. Through evaluation, we have shown that the proposed model yields high performances in both predicting global level relations and local level relations consistently.},
-DOI = {10.3390/app10031181}
+@article{app10031181,
+  title={GREG: A global level relation extraction with knowledge graph embedding},
+  author={Kim, Kuekyeng and Hur, Yuna and Kim, Gyeongmin and Lim, Heuiseok},
+  journal={Applied Sciences},
+  volume={10},
+  number={3},
+  pages={1181},
+  year={2020},
+  publisher={MDPI}
 }
 
 @inproceedings{zeng-etal-2021-sire,
