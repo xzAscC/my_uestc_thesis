@@ -390,8 +390,8 @@ CDR和GDA数据集也进行了类似的计算。
 \subsubsection{基于图的文档级关系抽取总结}\label{subsec:graph-neural-network}
 
 基于图的文档级关系抽取方法有着广泛的应用，他们相比于基于注意力的方法有着明显的优势，因为它们可以将关系推理的结构信息结合到图结构中，从而更好地捕捉长距离关系。
-然而，这些方法要么使用启发式的图结构，无法捕获原文中的顺序信息\cite{GAIN, Xu2020DocumentLevelRE}；要么分别使用依赖性和选区信息捕捉不同粒度的信息来预测不同的任务 \cite{SagDRE, duan-etal-2022-just}，但没有将它们结合到一起。
-在我们这项研究中，我们通过结合选区和依赖信息，并使用选区树增强依赖图来克服以上缺点。通过引入不同的语法，我们的模型可以融合不同粒度的信息，更好地捕捉长距离关系。
+然而，这些方法要么使用启发式的图结构，无法捕获原文中的顺序信息\cite{GAIN, Xu2020DocumentLevelRE}；要么分别使用依赖性和依存信息捕捉不同粒度的信息来预测不同的任务 \cite{SagDRE, duan-etal-2022-just}，但没有将它们结合到一起。
+在我们这项研究中，我们通过结合依存和依赖信息，并使用依存树增强依赖图来克服以上缺点。通过引入不同的语法，我们的模型可以融合不同粒度的信息，更好地捕捉长距离关系。
 
 \section{本章小结}
 
@@ -406,27 +406,100 @@ CDR和GDA数据集也进行了类似的计算。
 我们主要采用依赖图和依存树来合并额外的语法信息，并使用依存树中的信息来进一步增强依赖图的表示。
 依赖语法和依存语法描述了语法信息的互补但不同的方面。图 \ref{fig_syn_a}中的依赖图主要用于整合单个句子内的句法信息，该信息与原始纯文本具有很强的互补性，而图\ref{fig_syn_b}中的依存树则分层合理地组织单个句子的不同单词。\par
 
-我们算法的总体架构如图\ref{overview}所示。
+
+
+我们算法的总体架构如图\ref{fig:overview}所示。
 我们利用依赖语法和依存语法来构建依赖图和依存树，并利用预训练模型对文档中的单词进行编码。
 然后，我们使用树形长短期记忆模型来聚合来自依存树的信息，并通过图神经网络利用依赖图的信息，同时利用依存树来改进依赖图。
 我们通过可学习权重来调节依赖图和依存树的关系，以更好的利用这两种语法信息。
 
-\begin{figure*}
-    \centering{\includegraphics[height=0.5\linewidth]{misc/overview.pdf}}
-    \caption{整体算法的概述。我们使用选区语法的结果来增强依赖图，并通过动态加权融合获得实体对之间的关系。}
-\end{figure*}\label{overview}
-
-
-
-
-    
 \section{单词嵌入}
+\begin{figure}[t]
+    \centering{\includegraphics[height=0.5\linewidth]{misc/overview.pdf}}
+    \caption{整体算法的概述。我们使用依存语法的结果来增强依赖图，并通过动态加权融合获得实体对之间的关系。}
+\end{figure}\label{fig:overview}
+
+给定一份文档$D$，我们在每次实体提及之前和之后都会首先插入一个特殊的标记“$*$”\cite{zhang-etal-2017-position}。然后，我们将来自文档$D$的单词馈送到预训练模型中，以获得上下文化表示 $\mathcal{H}=\{h_1, \dots, h_T\} \in \mathcal{R}^{T \times d}$，其中$d$是训练模型嵌入后令牌的数量，$d$是令牌嵌入的维度：
+
+\begin{equation}
+    \mathcal{H} = PLM \{x_{1,1},\cdots, x_{I,P_I}\}
+\end{equation}\label{PLM}
+
+$x_{i, j}$是文档中$i^{th}$句子的$j^{th}$单词，PLM可以是预训练的BERT模型\cite{BERT}或长短期记忆模型。
 
 \section{基于依存语法树的文档级关系抽取}
+
 \begin{figure}[t]
     \includegraphics[width=0.5\textwidth]{misc/constituency.png}
     \caption{依存树将句子组织成树结构，不仅可以引入额外的层次语法信息，还可以在任意粒度上探索子内容。非叶节点颜色为绿色。} 
 \end{figure}\label{fig_syn_b}
+
+
+在通过预训练模型获得令牌级嵌入之后，我们的模型利用依存语法树来获得分层语法信息，来补偿过往模型预训练的依赖语法树中的不精确性。
+具体来说，我们利用基于文档$\mathcal{D}$的依存树，并使用树形长短期记忆模型\cite{miwa-bansal-2016-end, duan-etal-2022-just}来合并每一个句子的依存树根节点的信息。
+首先，我们将每个句子解析为相应的依存树 \footnote{依存语法树和依赖语法树通过Stanza库获得，这是目前最流行的依存语法树和依赖语法树库之一 \href{https://stanfordnlp.github.io/stanza/} { https://stanfordnlp.github.io/stanza/}}。
+我们可以从图\ref{fig_syn_b}中看到，每个依存树都描述了一种分层表示整个句子的语法结构方法。使用依存树，我们不仅可以包含额外的层次语法信息，还可以对具有任意粒度的句子进行编码。\par
+
+为了用树形长短期记忆模型表示依存树，我们首先用零初始化隐藏状态$h_j$和存储单元状态$c_j$。叶节点的输入向量用它们在预训练语言模型内的相应表示进行初始化，而非叶节点被设置为零。
+然后，我们使用树形长短期记忆模型\cite{miwa-bansal-2016-end}将叶节点的特征一直传播到句子的根
+节点。依存树中任意节点$j$的输入门$i_j$、输出门$o_j$和遗忘门$f_{jk}$计算如下：
+\begin{equation}
+    i_j = \sigma(W_ix_j +\sum_{l \in Child(j)}h_{l}W_{il}+b_i) 
+\end{equation}
+\begin{equation}
+    o_j = \sigma(W_ox_j +\sum_{l \in Child(j)}h_{l}W_{ol}+b_o) 
+\end{equation}
+\begin{equation}
+    f_{jk} = \sigma(W_fx_j +\sum_{l \in Child(k)}h_{jl}W_{kl}+b_f)
+\end{equation}
+
+其中$\sigma$是sigmoid函数，$W, b$是可训练的参数。
+$x_j$表示节点$j$的输入向量，$Child(j)$表示选区树中节点$j$的子节点。\par
+每个节点的综合结果$u_j$计算如下：
+\begin{equation}
+    u_j = \tanh(W_ux_j +\sum_{l \in Child(j)}h_{l}W_{ul}+b_u)
+\end{equation}
+\par
+
+最后，我们更新隐藏状态$h_j$和存储单元状态$c_j$如下，
+
+\begin{equation}
+    c_j = i_j \odot u_j + \sum_{l \in Child(j)} f_{jl} \odot c_l
+\end{equation}
+\begin{equation}
+    h_j = o_j \odot \tanh(c_j)
+\end{equation}
+\par
+
+在实践中，我们递归地更新每个节点的隐藏状态和存储单元状态，从根节点到叶节点。我们使用句子的根的特征向量作为整个句子的特征向量。
+对于具有$I$个句子的文档，我们可以获得所有的句子向量$\{s_I\}_{I=1}^{I}$。
+由于并非所有的句子都包含用于关系推理的相关信息，我们在句子向量上使用多头注意力层来识别最相关的句子。
+我们将此过程表述为：
+
+\begin{equation}
+    V_{doc} = [s_1, s_2, \dots, s_I]
+\end{equation}
+
+\begin{equation}
+    S,\  A = Attn(W_{t1}(e_s-e_o), W_{t2} V_{doc}, W_{t3} V_{doc})
+\end{equation}\label{Attn}
+
+其中$W_{t1}、W_{t2}$和$W_{t3}$是可训练的权重，$Attn$表示注意力层，$A$是注意力得分，$S$是通过注意力层的句子向量。
+然后，我们将加权句子与实体对相结合，计算关系$r$的得分$z_{const}$：
+\begin{equation}
+    z_s = tanh(W_{(s1)}e_s+W_{(s2)}S)
+\end{equation}
+\\
+\begin{equation}
+    z_o = tanh(W_{(o1)}e_o+W_{(o2)}S)
+\end{equation}
+\\
+\begin{equation}
+    z_{const} = z_s^\top W_{s, o}z_o+b_{const}
+\end{equation}
+
+其中$W、b$是可训练的参数。
+在这里，我们获得了基于关注度得分$a$和句子向量$S$的选区树的关系得分$z_{const}$，以增强依赖图。\par
 
 \section{基于依赖语法树的文档级关系抽取}
 \begin{figure}[t]
@@ -438,10 +511,6 @@ CDR和GDA数据集也进行了类似的计算。
 % 两页
 
 \section{本章小结}
-\newpage
-1
-\newpage
-
 
 \chapter{基于语法树的文档级关系抽取实验结果}
 为了全面的评估我们的模型，我们在来自不同领域的三个文档级数据集上评估了我们的算法模型。
