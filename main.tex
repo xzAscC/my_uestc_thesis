@@ -243,7 +243,7 @@ Xiao等人 \cite{xiao-etal-2020-denoising} 试图通过三个预训练任务来�
 Xu等人 \cite{Xu_Wang_Lyu_Zhu_Mao_2021} 基于当时文档级关系抽取模型的一个问题，即上下文推理和结构推理的阶段是分开的、因此缺乏对上下文表示的结构指导，从而引入了结构化自注意网络（SSAN），将结构依赖性包含在编码网络内和整个系统中。他们利用自注意机制的一个新扩展 \cite{Vaswani2017AttentionIA}，通过考虑两个实体结构，一个用于同一句子中的实体对的共现，另一个用于单个实体的共指，有效地对其构建块内和所有网络层自下而上的提及依赖性进行建模。除了实体提及之间的依赖性，Xu等人 \cite{Xu_Wang_Lyu_Zhu_Mao_2021}还使用注意力模块来捕捉实体提及与句内非实体之间的关系。它们包含了一个额外的与注意力模块并行的模块，该模块以上下文化的查询键表示为条件，对结构依赖性进行建模。这种设计使模型能够受益于结构相关性的指导，确保上下文信息和结构信息有效集成。
 
 \subsubsection{基于联合学习的注意力模型}
-Ma等人 \cite{ma-etal-2023-dreeam} 解决了学习文档级关系抽取和证据提取的两个问题：高资源消耗和缺乏人工注释数据。他们使用证据引导注意机制进行的文档级关系提取，通过在证据提取上指导ATLOP模型 \cite{zhou2021document}来完成证据提取和节省资源消耗。Ma等人使用手动标注的实体对特定的局部上下文嵌入进行计算，并将注意力权重作为证据得分结合在标记上。这种方法允许他们引入来自证据提取的知识，而不引入额外的可训练参数或昂贵的矩阵计算。为了缓解数据的缺乏，他们使用了与Tan等人 \cite{tan-etal-2022-document} 类似的知识提取技术， 利用远程监督数据来训练学生模型。
+Ma等人 \cite{ma-etal-2023-DREEAM} 解决了学习文档级关系抽取和证据提取的两个问题：高资源消耗和缺乏人工注释数据。他们使用证据引导注意机制进行的文档级关系提取，通过在证据提取上指导ATLOP模型 \cite{zhou2021document}来完成证据提取和节省资源消耗。Ma等人使用手动标注的实体对特定的局部上下文嵌入进行计算，并将注意力权重作为证据得分结合在标记上。这种方法允许他们引入来自证据提取的知识，而不引入额外的可训练参数或昂贵的矩阵计算。为了缓解数据的缺乏，他们使用了与Tan等人 \cite{tan-etal-2022-document} 类似的知识提取技术， 利用远程监督数据来训练学生模型。
 
 \subsubsection{基于注意力的文档级关系抽取模型小结}
 
@@ -454,7 +454,7 @@ $x_{i, j}$是文档中$i^{th}$句子的$j^{th}$单词，PLM可以是预训练的
 \end{equation}
 
 其中$\sigma$是sigmoid函数，$W, b$是可训练的参数。
-$x_j$表示节点$j$的输入向量，$Child(j)$表示选区树中节点$j$的子节点。\par
+$x_j$表示节点$j$的输入向量，$Child(j)$表示依存树中节点$j$的子节点。\par
 每个节点的综合结果$u_j$计算如下：
 \begin{equation}
     u_j = \tanh(W_ux_j +\sum_{l \in Child(j)}h_{l}W_{ul}+b_u)
@@ -499,7 +499,7 @@ $x_j$表示节点$j$的输入向量，$Child(j)$表示选区树中节点$j$的�
 \end{equation}
 
 其中$W、b$是可训练的参数。
-在这里，我们获得了基于关注度得分$a$和句子向量$S$的选区树的关系得分$z_{const}$，以增强依赖图。\par
+在这里，我们获得了基于关注度得分$a$和句子向量$S$的依存树的关系得分$z_{const}$，以增强依赖图。\par
 
 \section{基于依赖语法树的文档级关系抽取}
 
@@ -535,7 +535,7 @@ $x_j$表示节点$j$的输入向量，$Child(j)$表示选区树中节点$j$的�
 \end{equation}
 
 其中$S_i$和$S_j$是公式\ref{Attn}中的句子向量$i$和$j$。
-使用这些学习到的权重，我们的模型可以自动获得从文档前面句子的根节点到文档后面句子的根节点的逻辑连接，并融合依赖性和选区语法之间的信息，从而以不同的角度聚合信息。
+使用这些学习到的权重，我们的模型可以自动获得从文档前面句子的根节点到文档后面句子的根节点的逻辑连接，并融合依赖性和依存语法之间的信息，从而以不同的角度聚合信息。
 \par
 
 在获得依赖图的相邻矩阵$ADJ$后，我们使用卷积图神经网络来进行特征聚合和实体增强。
@@ -613,14 +613,19 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     \mathcal{L} = \sum_{1 \le i \le C} max(0, \alpha-t_i(z^i_{final} - z^s_{final}))
 \end{equation}
 
-其中$\alpha>0$是损失函数的超参数，来控制模型的过渡拟合，$C$是类的数量。$z^i_{final}, z^s_{final}$ 分别是$non\mathcal{NA}, \mathcal{NA}$的预测结果。
+其中$\alpha>0$是损失函数的超参数，来控制模型的过渡拟合，$C$是类的数量。$z^i_{final}, z^s_{final}$ 分别是$non\mathcal{NA}, \mathcal{NA}$类的预测结果。
 在这种情况下，该模型旨在做出“足够好”的预测，而不是“完美”的预测。因此，该模型避免了过度拟合任何类，尤其是对占主导地位的类。\par
 
 \section{本章小结}
-
+在这一部分，我们介绍了我们是如何融合依赖语法和依存语法来改进文档级关系抽取。
+我们观察到，依赖语法更适合构建实体对之间的路径，而依存语法更适合聚合句子级信息。
+因此，我们遵循先前的研究，将依赖语法树转换为依赖语法图，并提取实体对之间的路径。
+然而，由于预训练模型中学习的语法与依赖树的黄金语法之间的差距严重影响了文档级关系抽取的性能，我们建议利用依存树来聚合句子级别的信息，以弥补依赖树中的差距。
+具体来说，我们使用单层感知器来将依存树中的句子根信息插入到依赖语法图中，以替换依赖语法图中的原始句子根。
+此外，为了更好地考虑依赖图中的句子交互，我们添加了一个文档级节点并链接每个句子根，以减少实体对的距离，更好地捕捉远距离关系。
 \chapter{基于语法树的文档级关系抽取实验结果}
 为了全面的评估我们的模型，我们在来自不同领域的三个文档级数据集上评估了我们的算法模型。
-我们在第 \ref{sec:dataset}节介绍了这些模型，在第 \ref{sec:docred}和 \ref{sec:medical}节说明了我们的结果。
+我们在第 \ref{sec:dataset}节介绍了这些数据集，在第\ref{sec:implementation}中介绍了我们的实现细节，在第 \ref{sec:docred}和 \ref{sec:medical}节说明了我们的结果。
 然后，我们在第 \ref{sec:weight}节分析了两种不同的语法树权重，在第 \ref{sec:distance}节分析了依赖语法树路径距离。
 最后，我们在第 \ref{sec:inter}节进行了消融实验，并总结了我们的研究结果。
 
@@ -653,31 +658,166 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     这个数据集的预测任务是预测基因和疾病之间的二元关系。
 \end{itemize}
 
+\section{DocRED数据集实验结果说明与分析}\label{sec:implementation}
+
+我们的模型是在Pytorch\cite{paszke2019pytorch}上实现的，并使用stanza\cite{qi2020stanza}来提取依存和依赖语法。
+对于所有实验，我们的学习率设置为5e-5，权重衰减为1e-4。
+依赖关系图的卷积图神经网络的层数被设置为3，并且输出维度为128。
+依存树中每个节点的隐藏状态和单元状态共享256的维度。
+整个模型由AdamW优化。
+
 \section{DocRED数据集实验结果说明与分析}\label{sec:docred}
+
+我们将我们的模型与DocRED数据集中基于图的方法和基于注意力的方法进行了比较。对于基于注意力的方法，我们将所提出的方法与BERT\cite{DOCRED}、ATLOP\cite{zhou2021document}、EIDER\cite{xie2022eider}和自训练方法DREEAM\cite{ma-etal-2023-DREEAM}进行了比较。
+基于图的模型包括LSR\cite{nan-etal-2020-reasoning}、HeterGSAN\cite{zhang-etal-2020-document}、DRE\cite{xu-etal-2021-discriminative}、CorefDRE\cite{xue2022corefdre}、GAIN\cite{GAIN}、SagDRE\cite{SagDRE}和LARSON\cite{duan-etal-2022-just}。
+我们在$\mathrm{BERT}_{base}$和$\mathrm{DeBERTa}_{Large}$上训练我们的模型。我们不仅报告了F1和Ign-F1分数（不包括训练集和测试集共享的关系示例的F1分数），还报告了Intra-F1（仅考虑句内关系的F1分数）和Inter-F1（仅考虑句子间关系的F1分数）。\par
+
+\begin{table}
+    \begin{tabular}{@{}llllcccccc@{}}
+    \toprule
+    \multicolumn{4}{c}{\multirow{2}{*}{\textbf{Model}}} & \multicolumn{4}{c}{\textbf{dev}}             & \multicolumn{2}{c}{\textbf{test}} \\ \cmidrule(l){5-10} 
+    \multicolumn{4}{c}{}                       & \textbf{IgnF1} & \textbf{F1}    & \textbf{Intra F1} & \textbf{Inter F1} & \textbf{IgnF1}       & \textbf{F1}         \\ \midrule
+    \multicolumn{4}{l}{$\mathrm{BERT}_{base}$\cite{DOCRED}}                   & -     & 54.16 & 61.61    & 47.15    & -           & 53.20      \\
+    
+    \multicolumn{4}{l}{$\mathrm{LSR-BERT}_{base}$\cite{nan-etal-2020-reasoning}}                   & 52.43 & 59.00 & 65.26   & 52.05   & 56.97       & 59.05   \\
+    \multicolumn{4}{l}{$\mathrm{GAIN-BERT}_{base}$\cite{GAIN}}                   & 59.14 & 61.22 & 67.10    & 53.90    & 59.00       & 61.24      \\
+    \multicolumn{4}{l}{$\mathrm{HeterGSAN-BERT}_{base}$\cite{Xu2020DocumentLevelRE}}                   & 58.13 & 60.18 & -   & -   & 57.12       & 59.45   \\
+    \multicolumn{4}{l}{$\mathrm{DRN-BERT}_{base}$\cite{xu-etal-2021-discriminative}}                   & 59.33 & 61.09 & -   & -   & 59.15       & 61.37   \\
+    \multicolumn{4}{l}{$\mathrm{ATLOP-BERT}_{base}$\cite{zhou2021document}}                  & 59.22 & 61.09 & -        & -        & 59.31       & 61.30      \\
+    \multicolumn{4}{l}{$\mathrm{CorefDRE-BERT}_{base}$\cite{xue2022corefdre}}                  & 60.85 & 63.06 & -        & -        & 60.78       & 60.82      \\
+    \multicolumn{4}{l}{$\mathrm{EIDER-BERT}_{base}$\cite{xie2022eider}}                  & 60.51 & 62.48 & 68.47    & 55.21    & 60.42       & 62.47      \\
+    \multicolumn{4}{l}{$\mathrm{SagDRE-BERT}_{base}$\cite{SagDRE}}                 & 60.32 & 62.06 & -        & -        & 60.11       & 62.32      \\
+    \multicolumn{4}{l}{$\mathrm{LARSON-BERT}_{base}$\cite{duan-etal-2022-just}}                 & 61.05 & 63.01 & 68.63        & 55.75        & 60.71       & 62.83      \\
+    \multicolumn{4}{l}{$\mathrm{DREEAM-BERT}_{base}$\cite{ma-etal-2023-DREEAM}}                 & 60.51 & 62.55 & -        & -        & 60.03       & 62.49      \\
+    \multicolumn{4}{l}{$\mathrm{\textbf{FCDS-BERT}}_{base}$}              & \textbf{62.61} & \textbf{64.42} & \textbf{68.79}    & \textbf{57.24}    & \textbf{62.08}       & \textbf{64.21}      \\ \midrule
+    \multicolumn{4}{l}{$\mathrm{ATLOP-DeBERTa}_{Large}$\cite{zhou2021document}}          & 62.16 & 64.01 & 68.45        & 59.63        & 62.12       & 64.08      \\
+    \multicolumn{4}{l}{$\mathrm{\textbf{FCDS-DeBERTa}}_{Large}$}           & \textbf{64.12} & \textbf{66.17} & \textbf{70.19}        & \textbf{58.73}        & \textbf{64.03}       & \textbf{65.86}    \\ \midrule \\
+    \end{tabular}
+    \caption{在DocRED数据集的验证集和测试集上关系预测的结果。}
+\end{table}\label{results in docred}
+
+表\ref{results in docred}中列出的实验结果表明，我们的模型可以在一般领域的文档级关系抽取数据中取得领先的性能。在Ign F1和F1分数方面，所提出的模型在测试集上分别以2.29\%和1.94\%的优势优于基于依赖图的方法SagDRE\cite{SagDRE}，这表明依赖语法和依存语法的组合对于文档级关系提取是有用的。
+我们的模型将测试集上的IgnF1分数提高了1.56\%，而最先进的方法LARSON\cite{duan-etal-2022-just}使用依存树来预测DocRE的证据，并分别使用依存和依赖语法。这一进展证实了不同粒度的信息可以帮助DocRE中的关系提取。\par
 
 \section{医学数据集实验结果说明与分析}\label{sec:medical}
 
-\section{两种不同的语法树权重分析}\label{sec:weight}
+\begin{table}[]
+    % \caption{table: results in CDR and GDA}
+    \centering 
+    \begin{tabular}{lcc}
+    \hline
+    Model          & CDR            & GDA            \\ \hline
+    LSR-BERT\cite{nan-etal-2020-reasoning}       & 64.80           & 82.20           \\
+    SciBERT\cite{zhou2021document}        & 65.10           & 82.50           \\
+    ATLOP-SciBERT\cite{zhou2021document}  & 69.40           & 83.90           \\
+    EIDER-SciBERT\cite{xie2022eider}  & 70.63          & 84.54          \\
+    SagDRE-SciBERT\cite{SagDRE} & 71.80          & -              \\ 
+    LARSON-SciBERT\cite{duan-etal-2022-just} & 71.59          & 86.02              \\ 
+    DREEAM-SciBERT\cite{ma-etal-2023-DREEAM} & 71.55          & 84.51              \\ 
+    $\mathrm{\textbf{FCDS-SciBERT}}$           & \textbf{72.62} & \textbf{87.39} \\ \hline
+    \end{tabular}
+    \caption{CDR和GDA测试集上关系提取的结果。}
+\end{table}\label{CDR/GDA}
 
-\section{依赖语法树路径距离分析}\label{sec:distance}
+除了一般的领域文档级关系抽取方法外，我们还在两个生物医学领域数据集CDR和GDA上将我们的模型与各种先进的方法进行了比较，包括LSR\cite{nan-etal-2020-reasoning}、sciBERT\cite{zhou2021document}、ATLOP \cite{zhou2021document}、EIDER \cite{xie2022eider}、SagDRE \cite{SagDRE}和LARSON \cite{duan-etal-2022-just}。\par
+实验结果列于表\ref{CDR/GDA}中。
+总之，我们的模型在两个测试数据集上实现了显著的改进（CDR上为0.93\%，GDA上为1.27\%）。GDA和CDR的句子比DocRED多，因此我们的模型可以处理复杂的文档，进一步证明了它的通用性。 \par
+此外，为了评估改进的显著性，我们在三个数据集中进行了两样本t检验，将我们的方法与其他五种方法进行了比较。所获得的p值如表\ref{p}所示。可以看出，所有值都小于0.05，表明我们的方法有显著改善。
+
+\begin{table}[]
+    \begin{tabular}{lcc}
+    \hline
+    Model\ \textbackslash \ Metric       & IgnF1            & F1            \\ \hline
+    LSR\cite{nan-etal-2020-reasoning}       & 0.0146           & 0.0129           \\
+    ATLOP\cite{zhou2021document}  & 0.0240           & 0.0213           \\
+    EIDER\cite{xie2022eider}  & 0.0337          & 0.0313          \\
+    LARSON\cite{duan-etal-2022-just} & 0.0352          & 0.0341              \\ 
+    DREEAM\cite{ma-etal-2023-DREEAM} & 0.0470          & 0.0439              \\ \hline
+    \end{tabular}
+    \caption{在所有数据集上进行两样本t检验。在DocRED数据集上使用BERT进行单词嵌入，在CDR和GDA上使用SciBERT进行单词嵌入。}
+    \end{table} \label{p}
+
+\section{两种不同的语法树权重分析}\label{sec:weight}
+\begin{figure}[!t]
+    \centering{\includegraphics[width=\linewidth]{misc/learningCurve.png}}
+    \caption{$\eta$在DocRED、CDR和GDA数据集上的学习曲线。}
+\end{figure}\label{learning}
+为了全面了解我们方法的每个组成部分是如何对最终性能做出贡献的，我们进行了消融实验，以分析不同句法的功能。在图\ref{learning}中，我们绘制了方程中$\eta$的学习曲线。我们可以观察到$\eta$从初始值1.0开始减少，这表明依赖图在这个过程中发挥着更重要的作用，这可能是因为依赖图结合了依存语法树的特征并捕获了细粒度信息。 \par
 
 \section{消融实验结果说明与分析}\label{sec:inter}
 
+\begin{table}[]
+    \begin{tabular}{llc}
+    \hline
+    Ablation              & \multicolumn{1}{c}{F1} & \multicolumn{1}{l}{IgnF1} \\ \hline
+    原方法             & 64.42                  & 62.61                     \\ 
+    不对两种语法进行融合   & 62.59                  & 60.63                     \\
+    取消文档级节点 & 62.78                   & 60.92                     \\
+    取消依存语法树 & 62.15                  & 60.22                     \\ 
+    取消依赖语法树   & 61.63                  & 59.41                     \\
+    \hline
+    \end{tabular}
+    \caption{在DocRED的验证集中对我们的模型进行消融实验。}
+\end{table}\label{ablation}
+
+我们一次移除我们模型中的一部分，并使用表\ref{ablation}中DocRED数据集中的验证集集评估结果模型。对于单不对两种语法进行融合的情况，我们没有使用依存语法树来增强依赖语法图，并观察到F1和IgnF1分数分别减少了0.78\%和0.94\%，这表明融合语法对文档级关系抽取有利。\par
+然后，我们分别从文档级节点、依赖语法图和依存语法树之中删除一个。
+对于删除文档节点，我们观察到F1和IgnF1分别减少了0.59\%和0.65\%。
+我们推测文档节点减少了实体对之间的距离，这有助于文档级关系抽取。
+对于删除依赖图，只有依存语法树被合并用于关系预测。我们可以观察到F1分数下降了2。16\%. 当我们移除依存语法树时，也会出现类似的趋势，其中F1下降到62.15\%。因此，依赖语法图和依存语法树对我们的模型都很重要。\par
+
+\section{依赖语法树路径距离分析}\label{sec:distance}
+\begin{table}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{ccclcclcc}
+    \hline
+             & \multicolumn{2}{c}{DocRED}             &  & \multicolumn{2}{c}{CDR}            &  & \multicolumn{2}{c}{GDA}              \\ \cline{2-3} \cline{5-6} \cline{8-9} 
+             & 具有文档节点  & 不具有文档节点 &  & 具有文档节点& w/o 不具有文档节点 &  & 具有文档节点 & 不具有文档节点  \\ \hline
+             平均长度 \& 标准差d     & 6.19 $\pm$ 1.02           & 7.23 $\pm$ 1.55          &  & 5.96 $\pm$ 2.26            & 6.44 $\pm$ 2.23         &  & 6.82  $\pm$ 1.99           & 7.38 $\pm$ 2.43  \\
+    最大长度 & 7    & 9 &  & 8& 12 &  & 11            & 14  \\
+    最小长度   & 4  & 4 &  & 4        & 4  &  & 3              & 4     \\
+     \hline
+    
+    \end{tabular}}
+    \caption{DocRED、CDR、GDA数据集中具有文档节点和不具有文档节点的实体距离的平均/最大/最小长度和标准差。}
+\end{table}\label{attr}
+
+为了检验文档节点对减少实体对之间距离的影响，我们分析了在表\ref{attr}中的三个数据集中添加文档级节点前后实体距离的变化。通过随机选择600个案例，我们评估了有和没有文档节点的实体距离的平均值、最大值、最小值和标准差。我们的发现表明，平均实体距离减少了，这表明文档节点可以通过简化实体之间的交互来改进文档级关系抽取。
+
+\section{案例研究}
+\begin{figure}[t]
+    \includegraphics[width=\linewidth]{misc/case1.pdf}
+    \caption{ 在这个例子中，依赖语法图通过提取实体\textbf{Yellow} 和\textbf{2014/02/14}之间的最短路径：“\textbf{Yellow} is released on \textbf{2014/02/14}”，在DocRE中发挥了积极作用。
+    } 
+\end{figure}\label{fig_casea}
+\begin{figure}[t]
+    \includegraphics[width=\linewidth]{misc/case2.pdf}
+    \caption{在这个例子中，依赖语法图在文档级关系抽取中扮演着矛盾的角色。它提取的实体对\textbf{Yellow}和其作者\textbf{Chppa Boi}之间的最短路径为：”\textbf{Yellow} is was \textbf{Chppa Boi}“。然而，由于依赖语法解析器的不准确，模型无法捕获到关键字 \textbf{produced}，因此很难预测实体之间的真实关系。}
+\end{figure}\label{fig_caseb}
+
+为了更好地理解算法并启发未来的工作，我们进行了一个案例研究来研究我们算法预测的瓶颈。\par
+
+图\ref{fig_casea}中展示第一个例子是一个成功的依赖语法图，它说明了依赖语法如何帮助模型完成文档级关系抽取。在这种情况下，依赖语法分析器成功地解析了两句话中的依赖语法，并提取了重要的关键字来帮助预测。通过提取短路径“Yellow is released on 2014/02/14.”，模型只需要一个简单的句子级模型可以完成预测。
+
+图\ref{fig_caseb}中展示的第二个例子说明了我们的方法背后的动机，这是为了减轻依赖分析器的不准确和为实体选择关键字失败的情况。尽管依赖语法对文档级关系抽取来说是一个有用的工具，但它有时无法识别实体的相关关键字。在这种情况下，最短路径“Yellow is was Chppa Boi”远未完成预测，而路径中未选择真正的关键字“producted”。
+此外，依赖语法解析器中的错误会导致信息的严重缺乏。
+为了解决这个问题，我们利用依存语法树并融合来自依赖语法图和依存语法的信息，它分层地组织单个句子的不同单词，并可以将句子级别的信息自然地聚合到句子根节点。
+通过这样做，句子根节点可以获得根节点本身和句子级信息，同时增加路径的信息，减轻依赖解析器的不准确度。\par
+
 \section{本章小结}\label{sec:conclusion}
-\newpage
-1
-\newpage
+
+在本章中，我们在三个不同的数据集上评估了我们提出的算法。我们发现，我们的模型在三个测试数据集上实现了显著的改进，在三个数据集中进行了两样本t检验，表明我们的方法有显著改善。我们还分析了不同语法的功能，并发现文档节点对实体距离的影响。最后，我们进行了一个案例研究来研究我们算法预测的瓶颈。\par
 \chapter{结论}
-1
-\begin{comment}
-    在工作总结的基础上，经过分析、归纳，明确结论：
-①系统功能、指标等是否实现或达到课题要求（工程技
-术及软件课题）
-②理论结果是否正确、所建模型是否合理（理论课题）
-41③所阐述的观点是否正确（文科课题）
-④本课题有待进一步解决的问题及方向
-⑤本人收获及体会
-\end{comment}
+在这项工作中，我们提出了一种新的文档级关系提取模型。
+我们的模型利用了两种类型的额外语法信息，即依赖语法和依存语法。
+我们采用图卷积网络和树形长短期记忆模型对这两类信息进行编码。
+此外，通过使用依存语法树来增强依赖语法图，并在依赖语法图中添加文档节点，可以提高依赖语法图的表达能力，从而更好地捕捉长距离相关性。
+在三个公共文档级关系提取数据集上的实验表明，我们的模型优于现有方法。\par
+
+由于我们的研究重点是语法对文档级关系提取的影响，可能的未来的工作应该进一步分析依赖语法图和依存语法树等不同语法信息的不同影响。我们的模型在很大程度上依赖语法图，它提供了一种图形结构来连接语法相关的单词，并缩短两个实体之间的距离，但为什么依赖语法更有用，更受大多数研究人员的青睐，还有待进一步研究。
+另一方面，依存语法树是长期以来缺乏足够研究的语法。我们使用这些树来选择有利的句子，但还需要探索更有用的方法。\par
+此外，提取重要句子和融合语法信息的影响不仅存在于文档级关系提取中，也存在于许多其他文档级任务（如阅读理解和文档检索）中。可能的未来工作可以进一步研究这些文档级任务的关联性。最后，提高基于图的方法的效率也会带来一些新的可能，这是因为目前大多数的图方法虽然取得了不错的结果，但是大多数图方法都是计算密集型的方法。\par
+
 \thesisacknowledgement
 在攻读计算机学士学位期间，首先热烈感谢我的导师康昭教授。经过风风雨雨的研究，我得到了他的无私关怀和支持。在此特别表达感谢之情。我还要感谢我的一直以来的帮助者们，包括学院的老师、同学、同事，以及所有支持和关心我的人。我也要感谢我的家人，他们给予我强大的内心支持和生活的安定和稳定。
 
