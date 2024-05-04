@@ -757,7 +757,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     取消依赖语法树   & 61.63                  & 59.41                     \\
     \hline
     \end{tabular}
-    \caption{在DocRED的验证集中对我们的模型进行消融实验}
+    \caption{在DocRED的验证集中对我们的模型进行消融实验。}
 \end{table}\label{ablation}
 
 我们一次移除我们模型中的一部分，并使用表\ref{ablation}中DocRED数据集中的验证集集评估结果模型。对于单不对两种语法进行融合的情况，我们没有使用依存语法树来增强依赖语法图，并观察到F1和IgnF1分数分别减少了0.78\%和0.94\%，这表明融合语法对文档级关系抽取有利。\par
@@ -834,10 +834,72 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 \bibliography{reference}
 
 
-%\thesistranslationoriginal
-%\section{The OFDM Model of Multiple Carrier Waves}
+\thesistranslationoriginal
+\section{Double Graph Based Reasoning for Document-level Relation Extraction}
 
-%\thesistranslationchinese
-%\section{基于多载波索引键控的正交频分多路复用系统模型}
+\subsection{Abstract}
+
+Document-level relation extraction aims to extract relations among entities within a document. Different from sentence-level relation extraction, it requires reasoning over multiple sentences across paragraphs. In this paper, we propose Graph Aggregation-and-Inference Network (GAIN), a method to recognize such relations for long paragraphs. GAIN constructs two graphs, a heterogeneous mentionlevel graph (MG) and an entity-level graph (EG). The former captures complex interaction among different mentions and the latter aggregates mentions underlying for the same entities. Based on the graphs we propose a novel path reasoning mechanism to infer relations between entities. Experiments on the public dataset, DocRED, show GAIN achieves a significant performance improvement (2.85 on F1) over the previous state-of-the-art. \par
+
+\subsection{Introduction}
+
+The task of identifying semantic relations between entities from text, namely relation extraction (RE), plays a crucial role in a variety of knowledge-based applications, such as question answering  and large-scale knowledge graph construction. Previous methods focus on sentence-level RE, which predicts relations among entities in a single sentence. However, sentence-level RE models suffer from an inevitable limitation – they fail to recognize relations between entities across sentences. Hence, extracting relations at the document-level is necessary for a holistic understanding of knowledge in text. \par
+
+There are several major challenges in effective relation extraction at the document-level. Firstly, the subject and object entities involved in a relation may appear in different sentences. Therefore a relation cannot be identified based solely on a single sentence. Secondly, the same entity may be mentioned multiple times in different sentences. Crosssentence context information has to be aggregated to represent the entity better. Thirdly, the identification of many relations requires techniques of logical reasoning. This means these relations can only be successfully extracted when other entities and relations, usually spread across sentences, are identified implicitly or explicitly. As Figure 1 shows, it is easy to recognize the intra-sentence relations (Maryland, country, U.S.), (Baltimore, located in the administrative territorial entity, Maryland), and (Eldersburg, located in the administrative territorial entity, Maryland), since the subject and object appear in the same sentence. However, it is non-trivial to predict the inter-sentence relations between Baltimore and U.S., as well as Eldersburg and U.S., whose mentions do not appear in the same sentence and have long-distance dependencies. Besides, the identification of these two relation instances also requires logical reasoning. For example, Eldersburg belongs to U.S. because Eldersburg is located in Maryland, which belongs to U.S..\par
+
+Recently, Yao et al. proposed a largescale human-annotated document-level RE dataset, DocRED, to push sentence-level RE forward to document-level and it contains massive relation facts. Figure 1 shows an example from DocRED. We randomly sample 100 documents from the DocRED dev set and manually analyze the bad cases predicted by a BiLSTM-based model proposed by Yao et al.. As shown in Table 1, the error type of inter-sentence and that of logical reasoning take up a large proportion of all bad cases, with 53.5\% and 21.0\% respectively. Therefore, in this paper, we aim to tackle these problems to extract relations from documents better.\par
+
+Previous work in document-level RE do not consider reasoning, or only use graph-based or hierarchical neural network to conduct reasoning in an implicit way. In this paper, we propose a Graph Aggregation-and-Inference Network (GAIN) for document-level relation extraction. It is designed to tackle the challenges mentioned above directly. GAIN constructs a heterogeneous Mention-level Graph (MG) with two types of nodes, namely mention node and document node, and three different types of edges, i.e., intra-entity edge, inter-entity edge and document edge, to capture the context information of entities in the document. Then, we apply Graph Convolutional Network on MG to get a document-aware representation for each mention. Entity-level Graph (EG) is then constructed by merging mentions that refer to the same entity in MG, on top of which we propose a novel path reasoning mechanism. This reasoning mechanism allows our model to infer multi-hop relations between entities. \par
+In summary, our main contributions are as follows: 
+
+\begin{enumerate}
+
+    \item We propose a novel method, Graph Aggregation-and-Inference Network (GAIN), which features a double graph design, to better cope with document-level RE task.
+    \item We introduce a heterogeneous Mention-level Graph (MG) with a graph-based neural network to model the interaction among different mentions across the document and offer document-aware mention representations.
+    \item We introduce an Entity-level Graph (EG) and propose a novel path reasoning mechanism for relational reasoning among entities.
+\end{enumerate}
+
+We evaluate GAIN on the public DocRED dataset. It significantly outperforms the previous state-of-the-art model by 2.85 F1 score. Further analysis demonstrates the capability of GAIN to aggregate document-aware context information and to infer logical relations over documents.\par
+
+\subsection{Current Challenge}
+
+Document-level relation extraction is a quite challenging task, since (1) a document may be made up of many sentences, in which long-distance dependency exists; (2) each entity usually has multiple mentions distributed across different sentences, which requires a better way to aggregate information; (3) some relational prediction demands reasoning.\par
+
+For example, we use the model BiLSTM in  to extract relations in the document shown in Figure2. Although it can find out \textit{Martinique} is \textit{located in the administrative territorial entity}, \textit{France}, which belongs to \textit{Europe continent}, it fails to deduce that \textit{Martinique} also belongs to \textit{Europe continent} with information from both sentence $1$ and $7$. To further explore the limitation of current models, we further randomly extract $100$ documents in DocRED dev set and analyze the bad cases of the prediction results. As is shown in Table1, the model has poor performance in inter-sentence relations and those requiring reasoning. Inspired by the statistical results, we proposed our model GAIN to improve performance in inter-sentence and inferential relations prediction.\par
+
+\thesistranslationchinese
+\section{基于双图推理的文档级关系提取}
+\subsection{摘要}
+文档级关系提取旨在提取文档中实体之间的关系。
+与句子级关系提取不同，它需要跨段落对多个句子进行推理。
+在本文中，我们提出了图聚合和推理网络（GAIN），这是一种识别长段落这种关系的方法。图聚合和推理网络构造了两个图，一个是异构的实体提及级图（MG），另一个是实体级图（EG）。前者捕捉不同提及之间的复杂互动，后者聚合相同实体的潜在提及。基于这两个图，我们提出了一种新的路径推理机制来推断实体之间的关系。在公共数据集DocRED上的实验表明，与之前的最先进技术相比，图聚合和推理网络实现了显著的性能改进（F1分数提高2.85\%）。\par
+
+\subsection{引言}
+
+从文本中识别实体之间的语义关系，即关系提取，在各种基于知识的应用中发挥着至关重要的作用，如问答和大规模知识图构建。
+以前的方法侧重于句子级关系提取，它预测单个句子中实体之间的关系。然而，句子级关系提取模型不可避免地受到限制——因为它们无法识别句子中实体之间的关系。
+因此，在文档级别提取关系对于全面理解文本中的知识是必要的。\par
+
+在文档级关系提取中存在几个主要挑战。首先，关系中涉及的主体和客体可能出现在不同的句子中，因此不能仅仅根据一句话来确定关系。第二，同一实体可能在不同的句子中被多次提及。因此跨句上下文信息必须被聚合以更好地表示实体。第三，识别许多关系需要逻辑推理技术。这意味着只有当其他实体和关系（通常分布在句子中）被隐式或显式识别时，这些关系才能成功提取。如图1所示，由于主语和宾语出现在同一句话中，因此很容易识别句内关系（马里兰州，国家，美国）、（巴尔的摩，位于马里兰州行政领土实体）和（埃尔德斯堡，位于马里冈州行政领土实体）。然而，预测巴尔的摩和美国以及埃尔德斯堡和美国之间的句间关系是比较困难的，因为它们的提及不出现在同一个句子中，并且具有远距离依赖关系。此外，这两个关系实例的识别也需要逻辑推理。例如，埃尔德斯堡属于美国，因为埃尔德斯堡位于马里兰州，属于美国。\par
+
+最近，姚等人提出了一个大规模的人类注释文档级关系提取数据集DocRED，将句子级关系提取推进到文档级，其中包含大量的关系事实。图1显示了DocRED数据集的一个示例。我们从DocRED验证集中随机抽取100个文档，并手动分析姚等人提出的基于双向长短期记忆模型预测的不良案例。如表1所示，句间错误类型和逻辑推理错误类型在所有不良案例中占很大比例，分别为53.5\%和21.0\%。因此，在本文中，我们旨在解决这些问题，以便更好地从文档中提取关系。\par
+
+以前在文档级关系提取中的工作不考虑推理，或者只使用基于图或层次的神经网络以隐含的方式进行推理。在本文中，我们提出了一种用于文档级关系提取的图聚合和推理网络。它旨在直接应对上述挑战。图聚合和推理网络构造了一个具有两种类型的节点（即提及节点和文档节点）和三种不同类型的边（即实体内边、实体间边和文档边）的异构提及级图（MG），以捕获文档中实体的上下文信息。然后，我们在提及级图上应用图卷积网络来获得每个提及的文档感知表示。然后，通过合并提及级图中引用同一实体的提及来构建实体级图（EG），在此基础上，我们提出了一种新的路径推理机制。这种推理机制允许我们的模型推断实体之间的多跳关系。\par
+
+总之，我们的主要贡献如下：\par
+
+\begin{enumerate}
+
+    \item 为了更好地处理文档级的关系提取任务，我们提出了一种新的方法——图聚合和推理网络（GAIN），该方法采用了双图设计。
+    \item 我们引入了一种具有基于图的神经网络的异构提及水平图（MG），以对文档中不同提及之间的交互进行建模，并提供文档感知提及表示。
+    \item 我们引入了一种实体级图（EG），并提出了一种新的实体间关系推理的路径推理机制。
+\end{enumerate}
+
+我们在公共的DocRED数据集上评估图聚合和推理网络。它明显优于之前最先进的模型，并且提高了2.85的F1分数。进一步的分析证明了图聚合和推理网络在聚合文档感知上下文信息并推断文档上的逻辑关系的优秀能力。\par
+
+\subsection{当前的挑战}
+文档级关系提取是一项极具挑战性的任务，这可以归为三个原因：（1）文档可能由许多句子组成，其中存在远距离依赖关系；（2） 每个实体通常有多个提及，并且分布在不同的句子中，这需要更好的方式来聚合信息；（3） 一些关系预测需要推理。\par
+
+例如，我们使用双向长短期记忆模型来提取图2所示文档中的关系。虽然它可以发现马提尼克是法国的行政领土实体，法国属于欧洲大陆。但无法联系句子1和7的信息，它无法推断马提尼克也属于欧洲大陆。为了进一步探索当前模型的局限性，我们进一步随机提取DocRED验证集中的100个文档，并分析预测结果的不良情况。如表1所示，该模型在句间关系和需要推理的关系中表现不佳。受统计结果的启发，我们提出了我们的图聚合和推理网络，以提高句间关系和推理关系预测的性能。\par
 
 \end{document}
