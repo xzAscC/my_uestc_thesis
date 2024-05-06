@@ -76,9 +76,10 @@
 \end{enumerate}
 \begin{figure}[h]
     \centering
-    \caption{文档级关系抽取的一个例子。图片上方是文档内容，文档中实体用不同的颜色标注，下方是文档级关系抽取的结果}
     \includegraphics[width=0.8\textwidth]{misc/fig_example.pdf}
-\end{figure}\label{fig_example}
+    \caption{文档级关系抽取的一个例子。图片上方是文档内容，文档中实体用不同的颜色标注，下方是文档级关系抽取的结果}
+    \label{fig_example}
+\end{figure}
 
 图 \ref{fig_example}是一个例子，它包括来自同一文档中的句子级关系和文档级关系。
 为了推断"Marcus Miller"和"Herbie Hancock"之间的关系，模型应该能够排除不相关实体的影响，并找出句子3中的"he"一词指的是"Marcus Miller"。
@@ -314,7 +315,8 @@ Ma等人 \cite{ma-etal-2023-DREEAM} 解决了学习文档级关系抽取和证�
     \end{dependency}
     \vspace{-4em}
     \caption{Quirk和Poon \cite{quirk-poon-2017-distant}构建的两个句子的示例文档图。边表示传统的句内依赖关系，以及相邻句子的词根之间的连接。为了简单起见，省略了相邻单词之间的边缘或表示话语关系}
-\end{figure}\label{fig:quirk-poon}
+    \label{fig:quirk-poon}
+\end{figure}
 Quirk和Poon \cite{quirk-poon-2017-distant} 引入了文档图的概念。它提供了一种统一的方法，通过将单词表示为节点，将一些启发式的关系（例如，依赖关系，邻接关系等）表示为边，来导出对待预测的关系进行分类的特征，图\ref{fig:quirk-poon}是这种文档图的一个示例。
 这为文档级关系抽取的所有基于图的方法铺平了道路。
 Peng等人 \cite{peng-etal-2017-cross} 决定将这种图表示作为其框架的主干，其中包含一种新的图形长短期记忆模型。
@@ -325,7 +327,7 @@ Peng等人 \cite{peng-etal-2017-cross} 决定将这种图表示作为其框架�
 至于图形长短期记忆模型的反向传播，他们将文档图拆分为两个有向无环图。
 一个有向无环图包含从左到右的线性连接链接相邻的单词以及其他前向指向依赖项（前向传递），而另一个有向无环图则涵盖从右到左的线性连接链接相邻的单词和后向指向依赖性（后向传递） \par
 
-Christopoulou等人 \cite{christopoulou-etal-2018-walk} 提出了一种仅用于句子级关系抽取的基于图的随机行走的神经网络，同时处理多对关系，并将句子表示为向无环图，这种方法的详细过程参见图\ref{fig:christopoulou}。
+Christopoulou等人 \cite{christopoulou-etal-2018-walk} 提出了一种仅用于句子级关系抽取的基于图的随机行走的神经网络，同时处理多对关系，并将句子表示为向无环图，这种方法的详细过程参见图 \ref{fig:christopoulou}。
 他们后来在将他们的方法扩展到文档级别，引入部分连接的文档图而不是以前的完全连接的文档，使得文档级关系抽取向前迈出了一大步。
 与仅包含实体节点和单个边缘类型的句子级图相比，这种新的文档图由异构类型的节点和边组成，当实体提及可用时，这种方法可以使用多实例学习来进一步提高模型的性能。
 节点之间的连接基于预定义的文档级交互，目标是使用图中的其他现有边生成实体到实体的边表示，从而推断实体到实体关系。
@@ -337,7 +339,8 @@ Guo等人 \cite{guo-etal-2019-attention}还提出通过注意力引导来扩展�
     \centering
     \includegraphics[width=0.8\textwidth]{misc/graph_model.pdf}
     \caption{Christopoulou \cite{christopoulou-etal-2018-walk} 等人用于句子级关系抽取的基于图的随机行走的神经网络。该模型对句子进行编码，并将其输入迭代算法，以生成目标实体节点之间的边缘表示。为简洁起见，未显示某些节点连接}
-\end{figure}\label{fig:christopoulou}
+    \label{fig:christopoulou}
+\end{figure}
 
 
 根据Quirk和Poon \cite{quirk-poon-2017-distant} 中引入的依赖图，Gupta等人 \cite{Gupta_Rajaram_Schütze_Runkler_2019} 捕捉了两个实体之间的最短依赖路径，同时考虑了句内和句间关系。它们使用双向循环神经网络来表示通过依赖子树的最短依赖路径上的每个单词。
@@ -373,13 +376,14 @@ Zeng等人\cite{GAIN}提出了图聚合和推理网络，该网络结合了由�
 图聚合和推理网络捕捉不同提及之间的复杂互动，并聚合属于同一实体的互动。
 这是通过三种类型的边来实现的：一种是执行共指解析的实体内边，一种是对句子中实体之间的交互进行建模的实体间边，以及一种文档边、所有提及节点都连接到文档节点。
 通过建立这些关系，文档节点可以有效地处理所有提及，并促进文档和单个提及之间的交互。
-它还解决了长距离依赖的挑战，因为文档节点可以作为使用GCN传递消息的枢纽（见图\ref{fig:GAIN}）。但是这种方法也有一个显著的缺点，那就是它的计算复杂度过高，无法处理大规模数据集。\par
+它还解决了长距离依赖的挑战，因为文档节点可以作为使用GCN传递消息的枢纽（见图 \ref{fig:GAIN}）。但是这种方法也有一个显著的缺点，那就是它的计算复杂度过高，无法处理大规模数据集。\par
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{misc/model.pdf}
     \caption{图聚合和推理网络的结构 \cite{GAIN}。首先，上下文编码器获得每个单词的上下文化表示。然后，利用提及节点和文档节点构建提及级图。在应用图卷积网络之后，构建了实体级图，其中识别实体之间的路径以进行推理。最后，分类模块利用收集的信息对目标关系进行预测。不同的实体有不同的颜色}
-\end{figure}\label{fig:GAIN}
+    \label{fig:GAIN}
+\end{figure}
 
 为了考虑共指信息，Xue等人 \cite{y2020-coreferential}提出了基于图推理网络的文档级关系提取（CorefDRE），通过提及代词聚类直接指示模型学习共指信息。
 他们使用提取所有提及代词对，并使用预训练模型计算每个提及代词对的可信度，以减少代词带来的噪声。
@@ -456,9 +460,9 @@ CDR和GDA数据集也进行了类似的计算。
 \chapter{基于语法树的文档级关系抽取研究}
 为了充分利用文档中的语法信息，本文融合了依存语法和依赖语法来改进文档级关系抽取。
 我们主要采用依赖图和依存树来合并额外的语法信息，并使用依存树中的信息来进一步增强依赖图的表示。
-依赖语法和依存语法描述了语法信息的互补但不同的方面。图 \ref{fig_syn_a}中的依赖图主要用于整合单个句子内的句法信息，该信息与原始纯文本具有很强的互补性，而图\ref{fig_syn_b}中的依存树则分层合理地组织单个句子的不同单词。\par
+依赖语法和依存语法描述了语法信息的互补但不同的方面。图 \ref{fig_syn_a}中的依赖图主要用于整合单个句子内的句法信息，该信息与原始纯文本具有很强的互补性，而图 \ref{fig_syn_b}中的依存树则分层合理地组织单个句子的不同单词。\par
 
-我们算法的总体架构如图\ref{fig:overview}所示。
+我们算法的总体架构如图 \ref{fig:overview}所示。
 我们利用依赖语法和依存语法来构建依赖图和依存树，并利用预训练模型对文档中的单词进行编码。
 然后，我们使用树形长短期记忆模型来聚合来自依存树的信息，并通过图神经网络利用依赖图的信息，同时利用依存树来改进依赖图。
 我们通过可学习权重来调节依赖图和依存树的关系，以更好的利用这两种语法信息。
@@ -467,13 +471,15 @@ CDR和GDA数据集也进行了类似的计算。
 \begin{figure}[t]
     \centering{\includegraphics[height=0.5\linewidth]{misc/overview.pdf}}
     \caption{整体算法的概述。我们使用依存语法的结果来增强依赖图，并通过动态加权融合获得实体对之间的关系}
-\end{figure}\label{fig:overview}
+    \label{fig:overview}
+\end{figure}
 
 给定一份文档$D$，我们在每次实体提及之前和之后都会首先插入一个特殊的标记“$*$”\cite{zhang-etal-2017-position}。然后，我们将来自文档$D$的单词馈送到预训练模型中，以获得上下文化表示 $\mathcal{H}=\{h_1, \dots, h_T\} \in \mathcal{R}^{T \times d}$，其中$d$是训练模型嵌入后令牌的数量，$d$是令牌嵌入的维度：
 
 \begin{equation}
     \mathcal{H} = PLM \{x_{1,1},\cdots, x_{I,P_I}\}
-\end{equation}\label{PLM}
+    \label{PLM}
+\end{equation}
 
 $x_{i, j}$是文档中$i^{th}$句子的$j^{th}$单词，PLM可以是预训练的BERT模型\cite{BERT}或长短期记忆模型。
 
@@ -482,7 +488,8 @@ $x_{i, j}$是文档中$i^{th}$句子的$j^{th}$单词，PLM可以是预训练的
 \begin{figure}[t]
     \includegraphics[width=0.5\textwidth]{misc/constituency.png}
     \caption{依存树将句子组织成树结构，不仅可以引入额外的层次语法信息，还可以在任意粒度上探索子内容。非叶节点颜色为绿色} 
-\end{figure}\label{fig_syn_b}
+    \label{fig_syn_b}
+\end{figure}
 
 
 在通过预训练模型获得令牌级嵌入之后，我们的模型利用依存语法树来获得分层语法信息，来补偿过往模型预训练的依赖语法树中的不精确性。
@@ -532,7 +539,8 @@ $x_j$表示节点$j$的输入向量，$Child(j)$表示依存树中节点$j$的�
 
 \begin{equation}
     S,\  A = Attn(W_{t1}(e_s-e_o), W_{t2} V_{doc}, W_{t3} V_{doc})
-\end{equation}\label{Attn}
+    \label{Attn}
+\end{equation}
 
 其中$W_{t1}、W_{t2}$和$W_{t3}$是可训练的权重，$Attn$表示注意力层，$A$是注意力得分，$S$是通过注意力层的句子向量。
 然后，我们将加权句子与实体对相结合，计算关系$r$的得分$z_{const}$：
@@ -559,15 +567,16 @@ $x_j$表示节点$j$的输入向量，$Child(j)$表示依存树中节点$j$的�
 在这一部分，我们添加了一个文档节点，以缩短实体对之间的距离，更好地聚合长距离句子的信息。\par
 
 我们的依赖语法图包含四种节点：非根单词节点、根单词节点，实体提及节点和文档节点。具体地，文档中的每个单词对应于单词节点，并且对于不是依赖语法树中的句子根的单词，其编码特征对应于其节点特征。
-对于句子词根，我们特别利用公式\ref{Attn}中获得的词根特征$S$来对抗可能的错误解析。
-我们使用多层感知器（MLP）将在公式\ref{Attn}中原始特征与方程中的$S$融合，这是因为依赖语法图中的句子根应该包括整个句子的信息。
+对于句子词根，我们特别利用公式 \ref{Attn}中获得的词根特征$S$来对抗可能的错误解析。
+我们使用多层感知器（MLP）将在公式 \ref{Attn}中原始特征与方程中的$S$融合，这是因为依赖语法图中的句子根应该包括整个句子的信息。
 对于实体提及的节点，通过对该实体提及中的单词的特征进行平均来计算节点特征。
-文档节点在这里作为包括每个句子词根的信息并强调有利句子的节点，被计算为每个句子向量的加权平均值，权重是公式\ref{Attn}中实体对的注意力得分。\par
+文档节点在这里作为包括每个句子词根的信息并强调有利句子的节点，被计算为每个句子向量的加权平均值，权重是公式 \ref{Attn}中实体对的注意力得分。\par
 
 \begin{figure}[t]
     \includegraphics[width=0.5\textwidth]{misc/dependency.png}
     \caption{依赖语法树描述单个句子中单词之间的依赖语法关系。利用这样的语法信息可以显著地补充原始的纯文本，并捕捉相邻单词之间的关系。我们的模型将依赖语法树转换为依赖语法图} 
-\end{figure}\label{fig_syn_a}
+    \label{fig_syn_a}
+\end{figure}
 
 依赖语法图中有四种类型的边。
 其中三种边是双向边，一个是单向边。
@@ -580,11 +589,12 @@ $x_j$表示节点$j$的输入向量，$Child(j)$表示依存树中节点$j$的�
 双向边的权重为1，以表示它们的强连接。
 而非相邻句子根节点$i$到$j$的权重$ADJ_{i, j}$由它们的特征向量相似度计算出来：
 
-\begin{equation}\label{edge weight}
+\begin{equation}
+    \label{edge weight}
     ADJ_{i,j} = \frac{S_i \cdot S_j}{||S_i|| \cdot ||S_j||}
 \end{equation}
 
-其中$S_i$和$S_j$是公式\ref{Attn}中的句子向量$i$和$j$。
+其中$S_i$和$S_j$是公式 \ref{Attn}中的句子向量$i$和$j$。
 使用这些学习到的权重，我们的模型可以自动获得从文档前面句子的根节点到文档后面句子的根节点的逻辑连接，并融合依赖性和依存语法之间的信息，从而以不同的角度聚合信息。
 \par
 
@@ -597,7 +607,8 @@ $x_j$表示节点$j$的输入向量，$Child(j)$表示依存树中节点$j$的�
 其中$q^l$是层$l$的输入特征，$q^{l+1}$是输出特征。\par
 然后通过基于logsumexp \cite{jia-etal-2019-document}合并该实体的所有提及的嵌入来获得实体表示$entity_i$：
 
-\begin{equation}\label{logsumexp}
+\begin{equation}
+    \label{logsumexp}
     entity_i =  log \sum_{j} exp(m_{i,j})
 \end{equation}
 
@@ -654,12 +665,14 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 \end{equation}\par
 在获得这个标签之后，我们将依赖语法图和依存语法树获得的两个分数组合为它们的动态加权和 \cite{kendall2018multi}，权重$\eta$是可以自动调节获得的。
 
-\begin{equation}\label{eta}
+\begin{equation}
+    \label{eta}
     z_{final} = z_{dep} + \eta z_{const}
 \end{equation}
 \par 
 然后，我们将获得的新标签应用于损失函数中 \cite{SagDRE}。
-\begin{equation}\label{loss}
+\begin{equation}
+    \label{loss}
     \mathcal{L} = \sum_{1 \le i \le C} max(0, \alpha-t_i(z^i_{final} - z^s_{final}))
 \end{equation}
 
@@ -694,8 +707,8 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     \# 关系数量             & 96     & 2   & 2     \\
     \# 平均每篇文章的句子数量 & 8.0    & 9.7 & 10.2  \\ \hline
     \end{tabular}
-    
-\end{table} \label{table:datasets}
+    \label{table:datasets}
+\end{table} 
 尽管文档级关系抽取方法可能因为要提取的关系类型（基因-疾病关系，一般类型的关系等）而有所不同，但大多数关系抽取方法都是在通用数据集和医学数据集上进行评估的。
 因此我们选择了一个通用数据集和两个医学数据集来评估我们的模型，表 \ref{table:datasets}列出了这些数据集的统计数据。
 \begin{itemize}
@@ -747,10 +760,10 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     \multicolumn{4}{l}{$\mathrm{ATLOP-DeBERTa}_{Large}$\cite{zhou2021document}}          & 62.16 & 64.01 & 68.45        & 59.63        & 62.12       & 64.08      \\
     \multicolumn{4}{l}{$\mathrm{\textbf{FCDS-DeBERTa}}_{Large}$}           & \textbf{64.12} & \textbf{66.17} & \textbf{70.19}        & \textbf{58.73}        & \textbf{64.03}       & \textbf{65.86}    \\ \midrule \\
     \end{tabular}
-    
-\end{table}\label{results in docred}
+    \label{results in docred}
+\end{table}
 
-表\ref{results in docred}中列出的实验结果表明，我们的模型可以在一般领域的文档级关系抽取数据中取得领先的性能。在Ign F1和F1分数方面，所提出的模型在测试集上分别以2.29\%和1.94\%的优势优于基于依赖图的方法SagDRE\cite{SagDRE}，这表明依赖语法和依存语法的组合对于文档级关系提取是有用的。
+表 \ref{results in docred}中列出的实验结果表明，我们的模型可以在一般领域的文档级关系抽取数据中取得领先的性能。在Ign F1和F1分数方面，所提出的模型在测试集上分别以2.29\%和1.94\%的优势优于基于依赖图的方法SagDRE\cite{SagDRE}，这表明依赖语法和依存语法的组合对于文档级关系提取是有用的。
 我们的模型将测试集上的IgnF1分数提高了1.56\%，而最先进的方法LARSON\cite{duan-etal-2022-just}使用依存树来预测DocRE的证据，并分别使用依存和依赖语法。这一进展证实了不同粒度的信息可以帮助DocRE中的关系提取。\par
 
 \section{医学数据集实验结果说明与分析}\label{sec:medical}
@@ -771,13 +784,13 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     DREEAM-SciBERT\cite{ma-etal-2023-DREEAM} & 71.55          & 84.51              \\ 
     $\mathrm{\textbf{FCDS-SciBERT}}$           & \textbf{72.62} & \textbf{87.39} \\ \hline
     \end{tabular}
-    
-\end{table}\label{CDR/GDA}
+    \label{CDR_GDA}
+\end{table}
 
 除了一般的领域文档级关系抽取方法外，我们还在两个生物医学领域数据集CDR和GDA上将我们的模型与各种先进的方法进行了比较，包括LSR\cite{nan-etal-2020-reasoning}、sciBERT\cite{zhou2021document}、ATLOP \cite{zhou2021document}、EIDER \cite{xie2022eider}、SagDRE \cite{SagDRE}和LARSON \cite{duan-etal-2022-just}。\par
-实验结果列于表\ref{CDR/GDA}中。
+实验结果列于表 \ref{CDR_GDA}中。
 总之，我们的模型在两个测试数据集上实现了显著的改进（CDR上为0.93\%，GDA上为1.27\%）。GDA和CDR的句子比DocRED多，因此我们的模型可以处理复杂的文档，进一步证明了它的通用性。 \par
-此外，为了评估改进的显著性，我们在三个数据集中进行了两样本t检验，将我们的方法与其他五种方法进行了比较。所获得的p值如表\ref{p}所示。可以看出，所有值都小于0.05，表明我们的方法有显著改善。
+此外，为了评估改进的显著性，我们在三个数据集中进行了两样本t检验，将我们的方法与其他五种方法进行了比较。所获得的p值如表 \ref{p}所示。可以看出，所有值都小于0.05，表明我们的方法有显著改善。
 
 \begin{table}[]
     \caption{在所有数据集上进行两样本t检验。在DocRED数据集上使用BERT进行单词嵌入，在CDR和GDA上使用SciBERT进行单词嵌入}
@@ -790,15 +803,17 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     LARSON\cite{duan-etal-2022-just} & 0.0470          &   0.0439            \\ 
     DREEAM\cite{ma-etal-2023-DREEAM} &   0.0352        &   0.0341            \\ \hline
     \end{tabular}
-    
-    \end{table} \label{p}
+    \label{p}
+    \end{table} 
 
 \section{两种不同的语法树权重分析}\label{sec:weight}
+
 \begin{figure}[!t]
     \centering{\includegraphics[width=\linewidth]{misc/learningCurve.png}}
     \caption{$\eta$在DocRED、CDR和GDA数据集上的学习曲线}
-\end{figure}\label{learning}
-为了全面了解我们方法的每个组成部分是如何对最终性能做出贡献的，我们进行了消融实验，以分析不同句法的功能。在图\ref{learning}中，我们绘制了方程中$\eta$的学习曲线。我们可以观察到$\eta$从初始值1.0开始减少，这表明依赖图在这个过程中发挥着更重要的作用，这可能是因为依赖图结合了依存语法树的特征并捕获了细粒度信息。 \par
+    \label{fig_learning}
+\end{figure}
+为了全面了解我们方法的每个组成部分是如何对最终性能做出贡献的，我们进行了消融实验，以分析不同句法的功能。在图 \ref{fig_learning}中，我们绘制了方程中$\eta$的学习曲线。我们可以观察到$\eta$从初始值1.0开始减少，这表明依赖图在这个过程中发挥着更重要的作用，这可能是因为依赖图结合了依存语法树的特征并捕获了细粒度信息。 \par
 
 \section{消融实验结果说明与分析}\label{sec:inter}
 
@@ -814,14 +829,14 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     取消依赖语法树   & 61.63                  & 59.41                     \\
     \hline
     \end{tabular}
-    
-\end{table}\label{ablation}
+    \label{fig_ablation}
+\end{table}
 
-我们一次移除我们模型中的一部分，并使用表\ref{ablation}中DocRED数据集中的验证集集评估结果模型。对于单不对两种语法进行融合的情况，我们没有使用依存语法树来增强依赖语法图，并观察到F1和IgnF1分数分别减少了0.78\%和0.94\%，这表明融合语法对文档级关系抽取有利。\par
+我们一次移除我们模型中的一部分，并使用表 \ref{fig_ablation}中DocRED数据集中的验证集集评估结果模型。对于单不对两种语法进行融合的情况，我们没有使用依存语法树来增强依赖语法图，并观察到F1和IgnF1分数分别减少了0.78\%和0.94\%，这表明融合语法对文档级关系抽取有利。\par
 然后，我们分别从文档级节点、依赖语法图和依存语法树之中删除一个。
 对于删除文档节点，我们观察到F1和IgnF1分别减少了0.59\%和0.65\%。
 我们推测文档节点减少了实体对之间的距离，这有助于文档级关系抽取。
-对于删除依赖图，只有依存语法树被合并用于关系预测。我们可以观察到F1分数下降了2。16\%. 当我们移除依存语法树时，也会出现类似的趋势，其中F1下降到62.15\%。因此，依赖语法图和依存语法树对我们的模型都很重要。\par
+对于删除依赖图，只有依存语法树被合并用于关系预测。我们可以观察到F1分数下降了2.16\%. 当我们移除依存语法树时，也会出现类似的趋势，其中F1下降到62.15\%。因此，依赖语法图和依存语法树对我们的模型都很重要。\par
 
 \section{依赖语法树路径距离分析}\label{sec:distance}
 \begin{table}
@@ -837,10 +852,10 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
      \hline
     
     \end{tabular}}
-    
-\end{table}\label{attr}
+    \label{attr}
+\end{table}
 
-为了检验文档节点对减少实体对之间距离的影响，我们分析了在表\ref{attr}中的三个数据集中添加文档级节点前后实体距离的变化。通过随机选择600个案例，我们评估了有和没有文档节点的实体距离的平均值、最大值、最小值和标准差。我们的发现表明，平均实体距离减少了，这表明文档节点可以通过简化实体之间的交互来改进文档级关系抽取。
+为了检验文档节点对减少实体对之间距离的影响，我们分析了在表 \ref{attr}中的三个数据集中添加文档级节点前后实体距离的变化。通过随机选择600个案例，我们评估了有和没有文档节点的实体距离的平均值、最大值、最小值和标准差。我们的发现表明，平均实体距离减少了，这表明文档节点可以通过简化实体之间的交互来改进文档级关系抽取。
 
 \section{案例研究} \label{sec:case}
 
@@ -894,7 +909,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 \bibliographystyle{thesis-uestc}
 \bibliography{reference}
 
-
+\begin{comment}
 \thesistranslationoriginal
 \section{Double Graph Based Reasoning for Document-level Relation Extraction}
 
@@ -962,5 +977,5 @@ For example, we use the model BiLSTM in  to extract relations in the document sh
 文档级关系提取是一项极具挑战性的任务，这可以归为三个原因：（1）文档可能由许多句子组成，其中存在远距离依赖关系；（2） 每个实体通常有多个提及，并且分布在不同的句子中，这需要更好的方式来聚合信息；（3） 一些关系预测需要推理。\par
 
 例如，我们使用双向长短期记忆模型来提取图2所示文档中的关系。虽然它可以发现马提尼克是法国的行政领土实体，法国属于欧洲大陆。但无法联系句子1和7的信息，它无法推断马提尼克也属于欧洲大陆。为了进一步探索当前模型的局限性，我们进一步随机提取DocRED验证集中的100个文档，并分析预测结果的不良情况。如表1所示，该模型在句间关系和需要推理的关系中表现不佳。受统计结果的启发，我们提出了我们的图聚合和推理网络，以提高句间关系和推理关系预测的性能。\par
-
+\end{comment}
 \end{document}
