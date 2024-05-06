@@ -19,7 +19,7 @@
     它需要处理多个句子并对这些句子进行推理。
     最先进的文档级关系抽取使用图形结构来连接文档中的实体，来捕获文档中的实体对的交互。
     但是这些方法没有充分利用在句子级关系抽取中被充分研究的语法信息。
-    在本文中我们将语法树融合到文档级关系抽取中为主要研究内容，重点研究了使用依赖语法树，依存语法树进行文档级关系抽取算法的实现，以及怎么调整依赖语法树和依存语法树的在文档级关系抽取中的权重问题。
+    在本文中我们将语法树融合到文档级关系抽取中，重点研究了使用依赖语法树，依存语法树进行文档级关系抽取算法，以及调整依赖语法树和依存语法树在文档级关系抽取中权重的问题。
     我们利用依存语法树来聚合整个句子信息，并为目标实体对选择有指导意义的句子。
     同时我们利用依赖语法树对整个文档进行细粒度的分析，并选择其中重要的单词增强目标实体对的信息。
     文档级关系抽取将同时利用依赖语法树和依存语法树进行预测。
@@ -94,7 +94,7 @@
 但是，更多的方法通过显示捕获实体互动信息来改善文档级关系抽取。他们首先构建由不同节点组成的文档图 （例如实体的提及节点，实体节点，句子节点或者文档节点） \cite{GAIN, liu2023document}，将指导性上下文转化为图。
 由于语法信息可以通过提供显式语法细化和子内容建模来帮助文档级关系抽取 \cite{duan-etal-2022-just}，最近的研究 \cite{sahu2019inter, SagDRE} 采用依赖图来合并语法信息和结构上下文。
 他们发现一个精心设计的图形可以帮助模型更好的捕获实体互动信息，缩短实体之间的距离。
-然而，正如 \cite{sundararaman2019syntax, bai-etal-2021-syntax}所指出的，尽管预训练模型是用大量真实世界的文本数据进行训练的，但隐式学习的语法与黄金语法之间仍然存在很大差距。
+然而，正如 \cite{bai-etal-2021-syntax}所指出的，尽管预训练模型是用大量真实世界的文本数据进行训练的，但隐式学习的语法与黄金语法之间仍然存在很大差距。
 事实上，语法信息在句子级关系抽取中得到了广泛的应用\cite{xu-etal-2016-improved, qin-etal-2021-relation}，但在文档级关系抽取场景下尚未得到充分的探索。\par
 
 为了充分利用文档中的语法信息，本文融合了依存语法和依赖语法。
@@ -163,7 +163,7 @@ Gu等人 \cite{10.1093/database/bax024}通过两个分离的模型来提取关�
 然后，使用递归神经网络来聚合实例的表示，从而能够为实体对形成全面的文档级表示。
 
 \subsubsection{结合卷积神经网络和递归神经网络的文档级关系抽取}
-Mandya等人 \cite{mandya2018combining}提出了一种长短期记忆和卷积神经网络的组合模型，该模型利用单词嵌入和位置嵌入来提取跨句子的$n$元关系。
+Mandya等人提出了一种长短期记忆和卷积神经网络的组合模型，该模型利用单词嵌入和位置嵌入来提取跨句子的$n$元关系。
 长短期记忆模型将结合单词嵌入和位置特征的变换矢量表示作为输入，将输出被馈送到卷积神经网络中。
 卷积神经网络被用来提取最重要的特征。
 这种方法的优点是独立于复杂的句法特征，如依赖树、共指消解或话语特征。因此被广泛应用到后续的改进模型中。
@@ -621,15 +621,18 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 然而，由于预训练模型中学习的语法与依赖树的黄金语法之间的差距严重影响了文档级关系抽取的性能，我们建议利用依存树来聚合句子级别的信息，以弥补依赖树中的差距。
 具体来说，我们使用单层感知器来将依存树中的句子根信息插入到依赖语法图中，以替换依赖语法图中的原始句子根。
 此外，为了更好地考虑依赖图中的句子交互，我们添加了一个文档级节点并链接每个句子根，以减少实体对的距离，更好地捕捉远距离关系。
+
+
 \chapter{基于语法树的文档级关系抽取实验结果}
 为了全面的评估我们的模型，我们在来自不同领域的三个文档级数据集上评估了我们的算法模型。
 我们在第 \ref{sec:dataset}节介绍了这些数据集，在第\ref{sec:implementation}中介绍了我们的实现细节，在第 \ref{sec:docred}和 \ref{sec:medical}节说明了我们的结果。
-然后，我们在第 \ref{sec:weight}节分析了两种不同的语法树权重，在第 \ref{sec:distance}节分析了依赖语法树路径距离。
-最后，我们在第 \ref{sec:inter}节进行了消融实验，并总结了我们的研究结果。
+然后，我们在第 \ref{sec:inter}节进行了消融实验，并在第 \ref{sec:weight}节分析了两种不同的语法树权重，在第 \ref{sec:distance}节分析了依赖语法树路径距离。
+最后，我们在第 \ref{sec:case}节进行了案例研究，并总结了我们的研究结果。
 
 \section{文档级关系抽取抽取数据集说明}\label{sec:dataset}
 
 \begin{table}[h]
+    \caption{三个公共数据集的统计数据}
     \begin{tabular}{cccc}
     \hline
     统计数据               & DocRED & CDR & GDA   \\ \hline
@@ -639,7 +642,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     \# 关系数量             & 96     & 2   & 2     \\
     \# 平均每篇文章的句子数量 & 8.0    & 9.7 & 10.2  \\ \hline
     \end{tabular}
-    \caption{三个公共数据集的统计数据}
+    
 \end{table} \label{table:datasets}
 尽管文档级关系抽取方法可能因为要提取的关系类型（基因-疾病关系，一般类型的关系等）而有所不同，但大多数关系抽取方法都是在通用数据集和医学数据集上进行评估的。
 因此我们选择了一个通用数据集和两个医学数据集来评估我们的模型，表 \ref{table:datasets}列出了这些数据集的统计数据。
@@ -656,7 +659,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     这个数据集的预测任务是预测基因和疾病之间的二元关系。
 \end{itemize}
 
-\section{DocRED数据集实验结果说明与分析}\label{sec:implementation}
+\section{算法实现细节说明}\label{sec:implementation}
 
 我们的模型是在Pytorch\cite{paszke2019pytorch}上实现的，并使用stanza\cite{qi2020stanza}来提取依存和依赖语法。
 对于所有实验，我们的学习率设置为5e-5，权重衰减为1e-4。
@@ -671,6 +674,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 我们在$\mathrm{BERT}_{base}$和$\mathrm{DeBERTa}_{Large}$上训练我们的模型。我们不仅报告了F1和Ign-F1分数（不包括训练集和测试集共享的关系示例的F1分数），还报告了Intra-F1（仅考虑句内关系的F1分数）和Inter-F1（仅考虑句子间关系的F1分数）。\par
 
 \begin{table}
+    \caption{在DocRED数据集的验证集和测试集上关系预测的结果}
     \begin{tabular}{@{}llllcccccc@{}}
     \toprule
     \multicolumn{4}{c}{\multirow{2}{*}{\textbf{Model}}} & \multicolumn{4}{c}{\textbf{dev}}             & \multicolumn{2}{c}{\textbf{test}} \\ \cmidrule(l){5-10} 
@@ -691,7 +695,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     \multicolumn{4}{l}{$\mathrm{ATLOP-DeBERTa}_{Large}$\cite{zhou2021document}}          & 62.16 & 64.01 & 68.45        & 59.63        & 62.12       & 64.08      \\
     \multicolumn{4}{l}{$\mathrm{\textbf{FCDS-DeBERTa}}_{Large}$}           & \textbf{64.12} & \textbf{66.17} & \textbf{70.19}        & \textbf{58.73}        & \textbf{64.03}       & \textbf{65.86}    \\ \midrule \\
     \end{tabular}
-    \caption{在DocRED数据集的验证集和测试集上关系预测的结果}
+    
 \end{table}\label{results in docred}
 
 表\ref{results in docred}中列出的实验结果表明，我们的模型可以在一般领域的文档级关系抽取数据中取得领先的性能。在Ign F1和F1分数方面，所提出的模型在测试集上分别以2.29\%和1.94\%的优势优于基于依赖图的方法SagDRE\cite{SagDRE}，这表明依赖语法和依存语法的组合对于文档级关系提取是有用的。
@@ -701,6 +705,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 
 \begin{table}[]
     % \caption{table: results in CDR and GDA}
+    \caption{CDR和GDA测试集上关系提取的结果}
     \centering 
     \begin{tabular}{lcc}
     \hline
@@ -714,7 +719,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     DREEAM-SciBERT\cite{ma-etal-2023-DREEAM} & 71.55          & 84.51              \\ 
     $\mathrm{\textbf{FCDS-SciBERT}}$           & \textbf{72.62} & \textbf{87.39} \\ \hline
     \end{tabular}
-    \caption{CDR和GDA测试集上关系提取的结果}
+    
 \end{table}\label{CDR/GDA}
 
 除了一般的领域文档级关系抽取方法外，我们还在两个生物医学领域数据集CDR和GDA上将我们的模型与各种先进的方法进行了比较，包括LSR\cite{nan-etal-2020-reasoning}、sciBERT\cite{zhou2021document}、ATLOP \cite{zhou2021document}、EIDER \cite{xie2022eider}、SagDRE \cite{SagDRE}和LARSON \cite{duan-etal-2022-just}。\par
@@ -723,6 +728,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 此外，为了评估改进的显著性，我们在三个数据集中进行了两样本t检验，将我们的方法与其他五种方法进行了比较。所获得的p值如表\ref{p}所示。可以看出，所有值都小于0.05，表明我们的方法有显著改善。
 
 \begin{table}[]
+    \caption{在所有数据集上进行两样本t检验。在DocRED数据集上使用BERT进行单词嵌入，在CDR和GDA上使用SciBERT进行单词嵌入}
     \begin{tabular}{lcc}
     \hline
     Model\ \textbackslash \ Metric       & IgnF1            & F1            \\ \hline
@@ -732,7 +738,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     LARSON\cite{duan-etal-2022-just} & 0.0470          &   0.0439            \\ 
     DREEAM\cite{ma-etal-2023-DREEAM} &   0.0352        &   0.0341            \\ \hline
     \end{tabular}
-    \caption{在所有数据集上进行两样本t检验。在DocRED数据集上使用BERT进行单词嵌入，在CDR和GDA上使用SciBERT进行单词嵌入}
+    
     \end{table} \label{p}
 
 \section{两种不同的语法树权重分析}\label{sec:weight}
@@ -745,6 +751,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 \section{消融实验结果说明与分析}\label{sec:inter}
 
 \begin{table}[]
+    \caption{在DocRED的验证集中对我们的模型进行消融实验}
     \begin{tabular}{llc}
     \hline
     Ablation              & \multicolumn{1}{c}{F1} & \multicolumn{1}{l}{IgnF1} \\ \hline
@@ -755,7 +762,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
     取消依赖语法树   & 61.63                  & 59.41                     \\
     \hline
     \end{tabular}
-    \caption{在DocRED的验证集中对我们的模型进行消融实验}
+    
 \end{table}\label{ablation}
 
 我们一次移除我们模型中的一部分，并使用表\ref{ablation}中DocRED数据集中的验证集集评估结果模型。对于单不对两种语法进行融合的情况，我们没有使用依存语法树来增强依赖语法图，并观察到F1和IgnF1分数分别减少了0.78\%和0.94\%，这表明融合语法对文档级关系抽取有利。\par
@@ -766,6 +773,7 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 
 \section{依赖语法树路径距离分析}\label{sec:distance}
 \begin{table}
+    \caption{DocRED、CDR、GDA数据集中具有文档节点和不具有文档节点的实体距离的平均/最大/最小长度和标准差}
     \resizebox{\textwidth}{!}{
     \begin{tabular}{ccclcclcc}
     \hline
@@ -777,32 +785,35 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
      \hline
     
     \end{tabular}}
-    \caption{DocRED、CDR、GDA数据集中具有文档节点和不具有文档节点的实体距离的平均/最大/最小长度和标准差}
+    
 \end{table}\label{attr}
 
 为了检验文档节点对减少实体对之间距离的影响，我们分析了在表\ref{attr}中的三个数据集中添加文档级节点前后实体距离的变化。通过随机选择600个案例，我们评估了有和没有文档节点的实体距离的平均值、最大值、最小值和标准差。我们的发现表明，平均实体距离减少了，这表明文档节点可以通过简化实体之间的交互来改进文档级关系抽取。
 
-\section{案例研究}
-\begin{figure}[t]
-    \includegraphics[width=\linewidth]{misc/case1.pdf}
-    \caption{ 在这个例子中，依赖语法图通过提取实体\textbf{Yellow} 和\textbf{2014/02/14}之间的最短路径：“\textbf{Yellow} is released on \textbf{2014/02/14}”，在文档级关系抽取中发挥了积极作用
-    } 
-\end{figure}\label{fig_casea}
-\begin{figure}[t]
-    \includegraphics[width=\linewidth]{misc/case2.pdf}
-    \caption{在这个例子中，依赖语法图在文档级关系抽取中扮演着矛盾的角色。它提取的实体对\textbf{Yellow}和其作者\textbf{Chppa Boi}之间的最短路径为：”\textbf{Yellow} is was \textbf{Chppa Boi}“。然而，由于依赖语法解析器的不准确，模型无法捕获到关键字 \textbf{produced}，因此很难预测实体之间的真实关系}
-\end{figure}\label{fig_caseb}
+\section{案例研究} \label{sec:case}
 
 为了更好地理解算法并启发未来的工作，我们进行了一个案例研究来研究我们算法预测的瓶颈。\par
 
-图\ref{fig_casea}中展示第一个例子是一个成功的依赖语法图，它说明了依赖语法如何帮助模型完成文档级关系抽取。在这种情况下，依赖语法分析器成功地解析了两句话中的依赖语法，并提取了重要的关键字来帮助预测。通过提取短路径“Yellow is released on 2014/02/14.”，模型只需要一个简单的句子级模型可以完成预测。
+图 \ref{fig_case_a} 中展示第一个例子是一个成功的依赖语法图，它说明了依赖语法如何帮助模型完成文档级关系抽取。在这种情况下，依赖语法分析器成功地解析了两句话中的依赖语法，并提取了重要的关键字来帮助预测。通过提取短路径“Yellow is released on 2014/02/14.”，模型只需要一个简单的句子级模型可以完成预测。
 
-图\ref{fig_caseb}中展示的第二个例子说明了我们的方法背后的动机，这是为了减轻依赖分析器的不准确和为实体选择关键字失败的情况。尽管依赖语法对文档级关系抽取来说是一个有用的工具，但它有时无法识别实体的相关关键字。在这种情况下，最短路径“Yellow is was Chppa Boi”远未完成预测，而路径中未选择真正的关键字“producted”。
+图 \ref{fig_case_b} 中展示的第二个例子说明了我们的方法背后的动机，这是为了减轻依赖分析器的不准确和为实体选择关键字失败的情况。尽管依赖语法对文档级关系抽取来说是一个有用的工具，但它有时无法识别实体的相关关键字。在这种情况下，最短路径“Yellow is was Chppa Boi”远未完成预测，而路径中未选择真正的关键字“producted”。
 此外，依赖语法解析器中的错误会导致信息的严重缺乏。
 为了解决这个问题，我们利用依存语法树并融合来自依赖语法图和依存语法的信息，它分层地组织单个句子的不同单词，并可以将句子级别的信息自然地聚合到句子根节点。
 通过这样做，句子根节点可以获得根节点本身和句子级信息，同时增加路径的信息，减轻依赖解析器的不准确度。\par
 
-\section{本章小结}\label{sec:conclusion}
+\begin{figure}[!t]
+    \includegraphics[width=\linewidth]{misc/case1.pdf}
+    \caption{ 在这个例子中，依赖语法图通过提取实体\textbf{Yellow} 和\textbf{2014/02/14}之间的最短路径：“\textbf{Yellow} is released on \textbf{2014/02/14}”，在文档级关系抽取中发挥了积极作用} 
+    \label{fig_case_a}
+\end{figure} 
+
+\begin{figure}[t]
+    \includegraphics[width=\linewidth]{misc/case2.pdf}
+    \caption{在这个例子中，依赖语法图在文档级关系抽取中扮演着矛盾的角色。它提取的实体对\textbf{Yellow}和其作者\textbf{Chppa Boi}之间的最短路径为：”\textbf{Yellow} is was \textbf{Chppa Boi}“。然而，由于依赖语法解析器的不准确，模型无法捕获到关键字 \textbf{produced}，因此很难预测实体之间的真实关系}
+    \label{fig_case_b}
+\end{figure} 
+
+\section{本章小结} \label{sec:conclusion}
 
 在本章中，我们在三个不同的数据集上评估了我们提出的算法。我们发现，我们的模型在三个测试数据集上实现了显著的改进，在三个数据集中进行了两样本t检验，表明我们的方法有显著改善。我们还分析了不同语法的功能，并发现文档节点对实体距离的影响。最后，我们进行了一个案例研究来研究我们算法预测的瓶颈。\par
 \chapter{结论}
@@ -830,12 +841,5 @@ Hinge损失会训练一个最大裕度分类器，而不是对概率分布进行
 
 \bibliographystyle{thesis-uestc}
 \bibliography{reference}
-
-
-%\thesistranslationoriginal
-%\section{The OFDM Model of Multiple Carrier Waves}
-
-%\thesistranslationchinese
-%\section{基于多载波索引键控的正交频分多路复用系统模型}
 
 \end{document}
