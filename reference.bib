@@ -327,6 +327,7 @@ url= {https://aclanthology.org/2022.emnlp-main.272/},
  title = {Linear Hinge Loss and Average Margin},
 url={http://papers.neurips.cc/paper/1610-linear-hinge-loss-and-average-margin.pdf},
  volume = {11},
+ pages = {225–231},
  year = {1998}
 }
 % 27
@@ -672,19 +673,24 @@ keywords = {Graph Neural Networks, Text classification, External knowledge, Grap
     doi = "10.18653/v1/2020.coling-main.143",
     pages = "1630--1641"
 }
-@article{10.1093/database/bax024,
-    author = {Gu, Jinghang and Sun, Fuqing and Qian, Longhua and Zhou, Guodong},
-    title = "{Chemical-induced disease relation extraction via convolutional neural network}",
-    journal = {Database},
-    volume = {2017},
-    pages = {bax024},
-    year = {2017},
-    month = {04},
-    abstract = "{This article describes our work on the BioCreative-V chemical–disease relation (CDR) extraction task, which employed a maximum entropy (ME) model and a convolutional neural network model for relation extraction at inter- and intra-sentence level, respectively. In our work, relation extraction between entity concepts in documents was simplified to relation extraction between entity mentions. We first constructed pairs of chemical and disease mentions as relation instances for training and testing stages, then we trained and applied the ME model and the convolutional neural network model for inter- and intra-sentence level, respectively. Finally, we merged the classification results from mention level to document level to acquire the final relations between chemical and disease concepts. The evaluation on the BioCreative-V CDR corpus shows the effectiveness of our proposed approach.Database URL:http://www.biocreative.org/resources/corpora/biocreative-v-cdr-corpus/}",
-    issn = {1758-0463},
-    doi = {10.1093/database/bax024},
-    url = {https://doi.org/10.1093/database/bax024},
-    eprint = {https://academic.oup.com/database/article-pdf/doi/10.1093/database/bax024/19233027/bax024.pdf},
+
+@inproceedings{10.1093/database/bax024,
+    title = "Convolutional neural networks for chemical-disease relation extraction are improved with character-based word embeddings",
+    author = "Nguyen, Dat Quoc  and
+      Verspoor, Karin",
+    editor = "Demner-Fushman, Dina  and
+      Cohen, Kevin Bretonnel  and
+      Ananiadou, Sophia  and
+      Tsujii, Junichi",
+    booktitle = "Proceedings of the {B}io{NLP} 2018 workshop",
+    month = jul,
+    year = "2018",
+    address = "Melbourne, Australia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/W18-2314",
+    doi = "10.18653/v1/W18-2314",
+    pages = "129--136",
+    abstract = "We investigate the incorporation of character-based word representations into a standard CNN-based relation extraction model. We experiment with two common neural architectures, CNN and LSTM, to learn word vector representations from character embeddings. Through a task on the BioCreative-V CDR corpus, extracting relationships between chemicals and diseases, we show that models exploiting the character-based word representations improve on models that do not use this information, obtaining state-of-the-art result relative to previous neural approaches.",
 }
 
 @article{li2018chemical,
@@ -755,7 +761,6 @@ url={https://openreview.net/forum?id=Sye0lZqp6Q}
                   William Yang Wang},
   title        = {Fine-tune Bert for DocRED with Two-step Process},
   journal      = {CoRR},
-  volume       = {abs/1909.11898},
   year         = {2019},
   url          = {http://arxiv.org/abs/1909.11898},
   eprinttype    = {arXiv},
@@ -871,6 +876,7 @@ DOI = {10.3390/app12031599}
   note = {cite arxiv:1706.03762Comment: 15 pages, 5 figures},
   timestamp = {2020-01-09T12:02:01.000+0100},
   title = {Attention Is All You Need},
+  pages = {21-25},
   url = {http://arxiv.org/abs/1706.03762},
   volume = {abs/1706.03762},
   year = 2017
