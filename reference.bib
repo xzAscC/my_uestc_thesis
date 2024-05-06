@@ -436,14 +436,6 @@ url={https://aclanthology.org/2023.eacl-main.145.pdf}
     pages = "3011--3020",
     abstract = "Pre-trained language models like BERT achieve superior performances in various NLP tasks without explicit consideration of syntactic information. Meanwhile, syntactic information has been proved to be crucial for the success of NLP applications. However, how to incorporate the syntax trees effectively and efficiently into pre-trained Transformers is still unsettled. In this paper, we address this problem by proposing a novel framework named Syntax-BERT. This framework works in a plug-and-play mode and is applicable to an arbitrary pre-trained checkpoint based on Transformer architecture. Experiments on various datasets of natural language understanding verify the effectiveness of syntax trees and achieve consistent improvement over multiple pre-trained models, including BERT, RoBERTa, and T5.",
 }
-% 36
-@article{sundararaman2019syntax,
-  title={Syntax-infused transformer and bert models for machine translation and natural language understanding},
-  author={Sundararaman, Dhanasekar and Subramanian, Vivek and Wang, Guoyin and Si, Shijing and Shen, Dinghan and Wang, Dong and Carin, Lawrence},
-  journal={arXiv preprint arXiv:1911.06156},
-  year={2019},
-url={https://arxiv.org/abs/1911.06156}
-}
 % 37
 @inproceedings{gupta2019neural,
   title={Neural relation extraction within and across sentence boundaries},
@@ -570,12 +562,26 @@ url={https://openreview.net/forum?id=Bkg6RiCqY7}
 }
 
 @article{xue2022corefdre,
-  title={CorefDRE: Document-level Relation Extraction with coreference resolution},
-  author={Xue, Zhongxuan and Li, Rongzhen and Dai, Qizhu and Jiang, Zhong},
-  journal={arXiv preprint arXiv:2202.10744},
-  year={2022},
-url={https://arxiv.org/abs/2202.10744}
+author = {Xu, Wang and Chen, Kehai and Zhao, Tiejun},
+title = {Document-Level Relation Extraction with Path Reasoning},
+year = {2023},
+issue_date = {April 2023},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {22},
+number = {4},
+issn = {2375-4699},
+url = {https://doi.org/10.1145/3572898},
+doi = {10.1145/3572898},
+abstract = {Document-level relation extraction (DocRE) aims to extract relations among entities across multiple sentences within a document by using reasoning skills (i.e., pattern recognition, logical reasoning, coreference reasoning, etc.) related to the reasoning paths between two entities. However, most of the advanced DocRE models only attend to the feature representations of two entities to determine their relation, and do not consider one complete reasoning path from one entity to another entity, which may hinder the accuracy of relation extraction. To address this issue, this article proposes a novel method to capture this reasoning path from one entity to another entity, thereby better simulating reasoning skills to classify relation between two entities. Furthermore, we introduce an additional attention layer to summarize multiple reasoning paths for further enhancing the performance of the DocRE model. Experimental results on a large-scale document-level dataset show that the proposed approach achieved a significant performance improvement on a strong heterogeneous graph-based baseline.},
+journal = {ACM Trans. Asian Low-Resour. Lang. Inf. Process.},
+month = {mar},
+articleno = {104},
+numpages = {14},
+keywords = {path reasoning, graph neural network, Document-level relation extraction}
 }
+
+
 
 @inproceedings{liu2023document,
   title={Document-Level Relation Extraction with Cross-sentence Reasoning Graph},
@@ -599,11 +605,17 @@ author = {Yong Dai and Linjun Shou and Ming Gong and Xiaolin Xia and Zhao Kang a
 keywords = {Graph Neural Networks, Text classification, External knowledge, Graph fusion},
 }
 
-@article{delaunay2023comprehensive,
-  title={A Comprehensive Survey of Document-level Relation Extraction (2016-2022)},
-  author={Delaunay, Julien and Tran, Thi Hong Hanh and Gonz{\'a}lez-Gallardo, Carlos-Emiliano and Bordea, Georgeta and Sidere, Nicolas and Doucet, Antoine},
-  journal={arXiv preprint arXiv:2309.16396},
-  year={2023}
+@inproceedings{delaunay2023comprehensive,
+  title={A Survey on Document-Level Relation Extraction: Methods and Applications},
+  author={Yifan Zheng and Yikai Guo and Zhizhao Luo and Zengwen Yu and Kunlong Wang and Hong Zhang and Hua Zhao},
+  year={2023},
+  booktitle={Proceedings of the 3rd International Conference on Internet, Education and Information Technology (IEIT 2023)},
+  pages={1061-1071},
+  issn={2667-128X},
+  isbn={978-94-6463-230-9},
+  url={https://doi.org/10.2991/978-94-6463-230-9_128},
+  doi={10.2991/978-94-6463-230-9_128},
+  publisher={Atlantis Press}
 }
 @ARTICLE{9098945,
   author={Han, Xiaoyu and Wang, Lei},
@@ -685,10 +697,11 @@ keywords = {Graph Neural Networks, Text classification, External knowledge, Grap
   publisher={Springer}
 }
 @article{mandya2018combining,
-  title={Combining long short term memory and convolutional neural network for cross-sentence n-ary relation extraction},
-  author={Mandya, Angrosh and Bollegala, Danushka and Coenen, Frans and Atkinson, Katie},
-  journal={arXiv preprint arXiv:1811.00845},
-  year={2018}
+title={Combining Long Short Term Memory and Convolutional Neural Network for Cross-Sentence n-ary Relation Extraction},
+author={Angrosh Mandya and Danushka Bollegala and Frans Coenen and Katie Atkinson},
+booktitle={Automated Knowledge Base Construction (AKBC)},
+year={2019},
+url={https://openreview.net/forum?id=Sye0lZqp6Q}
 }
 
 @inproceedings{wu2019renet,
